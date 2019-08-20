@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 
-public class BorrowBookUI {
+public class BorrowBookUi { // Class name changed ( To: BorrowBookUi ; Orig: BorrowBookUI;)
 
 	public static enum UiState { INITIALISED, READY, RESTRICTED, SCANNING, IDENTIFIED, FINALISING, COMPLETED, CANCELLED };  //Change enum name ( To: enum UiState; Orig: enum UI_STATE;)
 
@@ -10,7 +10,7 @@ public class BorrowBookUI {
 	private UiState uiState; //Change enu name and variable name ( To: UiState uiState; Orig: UI_STATE StaTe;)
 
 
-	public BorrowBookUI(BorrowBookControl control) {
+	public BorrowBookUi(BorrowBookControl control) { // Default constructor name changed ( To: BorrowBookUi ; Orig: BorrowBookUI;)
 		this.browBkCntrl = control; // Change variable name ( To: browBkCntrl; Orig: CONTROL;)
 		input = new Scanner(System.in);
 		uiState = UiState.INITIALISED; //Change enu name and variable name ( To: uiState = UiState.INITIALISED; Orig: StaTe = UI_STATE.INITIALISED;)
