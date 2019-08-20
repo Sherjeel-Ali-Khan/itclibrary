@@ -29,19 +29,19 @@ public class library implements Serializable {
 	private int loanId; //Change variable name LOAN_ID to loanId
 	private Date loanDate; //Change variable name LOAN_DATE to loanDate
 	
-	private Map<Integer, book> CATALOG;
-	private Map<Integer, member> MEMBERS;
-	private Map<Integer, loan> LOANS;
-	private Map<Integer, loan> CURRENT_LOANS;
-	private Map<Integer, book> DAMAGED_BOOKS;
+	private Map<Integer, book> catalog; //Change map name CATALOG to catalog
+	private Map<Integer, member> members; //Change map name MEMBERS to members
+	private Map<Integer, loan> loans; //Change map name LOANS to loans
+	private Map<Integer, loan> currentLoans; //Change map name CURRENT_LOANS to currentLoans
+	private Map<Integer, book> damagedBooks; //Change map name DAMAGED_BOOKS to damagedBooks
 	
 
 	private library() {
-		CATALOG = new HashMap<>();
-		MEMBERS = new HashMap<>();
-		LOANS = new HashMap<>();
-		CURRENT_LOANS = new HashMap<>();
-		DAMAGED_BOOKS = new HashMap<>();
+		catalog = new HashMap<>();
+		members = new HashMap<>();
+		loans = new HashMap<>();
+		currentLoans = new HashMap<>();
+		damagedBooks = new HashMap<>();
 		bookId = 1;
 		memberId = 1;		
 		loanId = 1;		
@@ -109,44 +109,44 @@ public class library implements Serializable {
 
 	
 	public List<member> MEMBERS() {		
-		return new ArrayList<member>(MEMBERS.values()); 
+		return new ArrayList<member>(members.values()); 
 	}
 
 
 	public List<book> BOOKS() {		
-		return new ArrayList<book>(CATALOG.values()); 
+		return new ArrayList<book>(catalog.values()); 
 	}
 
 
 	public List<loan> CurrentLoans() {
-		return new ArrayList<loan>(CURRENT_LOANS.values());
+		return new ArrayList<loan>(currentLoans.values());
 	}
 
 
 	public member Add_mem(String lastName, String firstName, String email, int phoneNo) {		
 		member member = new member(lastName, firstName, email, phoneNo, NextMID());
-		MEMBERS.put(member.GeT_ID(), member);		
+		members.put(member.GeT_ID(), member);		
 		return member;
 	}
 
 	
 	public book Add_book(String a, String t, String c) {		
 		book b = new book(a, t, c, NextBID());
-		CATALOG.put(b.ID(), b);		
+		catalog.put(b.ID(), b);		
 		return b;
 	}
 
 	
 	public member MEMBER(int memberId) {
-		if (MEMBERS.containsKey(memberId)) 
-			return MEMBERS.get(memberId);
+		if (members.containsKey(memberId)) 
+			return members.get(memberId);
 		return null;
 	}
 
 	
 	public book Book(int bookId) {
-		if (CATALOG.containsKey(bookId)) 
-			return CATALOG.get(bookId);		
+		if (catalog.containsKey(bookId)) 
+			return catalog.get(bookId);		
 		return null;
 	}
 
@@ -181,15 +181,15 @@ public class library implements Serializable {
 		loan loan = new loan(NextLID(), book, member, dueDate);
 		member.Take_Out_Loan(loan);
 		book.Borrow();
-		LOANS.put(loan.ID(), loan);
-		CURRENT_LOANS.put(book.ID(), loan);
+		loans.put(loan.ID(), loan);
+		currentLoans.put(book.ID(), loan);
 		return loan;
 	}
 	
 	
 	public loan LOAN_BY_BOOK_ID(int bookId) {
-		if (CURRENT_LOANS.containsKey(bookId)) {
-			return CURRENT_LOANS.get(bookId);
+		if (currentLoans.containsKey(bookId)) {
+			return currentLoans.get(bookId);
 		}
 		return null;
 	}
@@ -216,24 +216,24 @@ public class library implements Serializable {
 		book.Return(isDamaged);
 		if (isDamaged) {
 			member.Add_Fine(damageFee);
-			DAMAGED_BOOKS.put(book.ID(), book);
+			damagedBooks.put(book.ID(), book);
 		}
 		currentLoan.DiScHaRgE();
-		CURRENT_LOANS.remove(book.ID());
+		currentLoans.remove(book.ID());
 	}
 
 
 	public void checkCurrentLoans() {
-		for (loan loan : CURRENT_LOANS.values()) {
+		for (loan loan : currentLoans.values()) {
 			loan.checkOverDue();
 		}		
 	}
 
 
 	public void Repair_BOOK(book currentBook) {
-		if (DAMAGED_BOOKS.containsKey(currentBook.ID())) {
+		if (damagedBooks.containsKey(currentBook.ID())) {
 			currentBook.Repair();
-			DAMAGED_BOOKS.remove(currentBook.ID());
+			damagedBooks.remove(currentBook.ID());
 		}
 		else {
 			throw new RuntimeException("Library: repairBook: book is not damaged");
