@@ -7,25 +7,25 @@ public class loan implements Serializable {
 	
 	public static enum LOAN_STATE { CURRENT, OVER_DUE, DISCHARGED };
 	
-	private int ID;
-	private book B;
-	private member M;
-	private Date D;
-	private LOAN_STATE state;
+	private int id; //Change variable name ID to id
+	private book book; //Change variable name B to book
+	private member member; //Change variable name M to member
+	private Date date; //Change variable name D to date
+	private LOAN_STATE state; 
 
 	
 	public loan(int loanId, book book, member member, Date dueDate) {
-		this.ID = loanId;
-		this.B = book;
-		this.M = member;
-		this.D = dueDate;
+		this.id = loanId;
+		this.book = book;
+		this.member = member;
+		this.date = dueDate;
 		this.state = LOAN_STATE.CURRENT;
 	}
 
 	
 	public void checkOverDue() {
 		if (state == LOAN_STATE.CURRENT &&
-			Calendar.INSTANCE().Date().after(D)) {
+			Calendar.INSTANCE().Date().after(date)) {
 			this.state = LOAN_STATE.OVER_DUE;			
 		}
 	}
@@ -37,12 +37,12 @@ public class loan implements Serializable {
 
 	
 	public Integer ID() {
-		return ID;
+		return id;
 	}
 
 
 	public Date Get_Due_Date() {
-		return D;
+		return date;
 	}
 	
 	
@@ -50,24 +50,24 @@ public class loan implements Serializable {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 		StringBuilder sb = new StringBuilder();
-		sb.append("Loan:  ").append(ID).append("\n")
-		  .append("  Borrower ").append(M.GeT_ID()).append(" : ")
-		  .append(M.Get_LastName()).append(", ").append(M.Get_FirstName()).append("\n")
-		  .append("  Book ").append(B.ID()).append(" : " )
-		  .append(B.TITLE()).append("\n")
-		  .append("  DueDate: ").append(sdf.format(D)).append("\n")
+		sb.append("Loan:  ").append(id).append("\n")
+		  .append("  Borrower ").append(member.GeT_ID()).append(" : ")
+		  .append(member.Get_LastName()).append(", ").append(member.Get_FirstName()).append("\n")
+		  .append("  Book ").append(book.id()).append(" : " )
+		  .append(book.TITLE()).append("\n")
+		  .append("  DueDate: ").append(sdf.format(date)).append("\n")
 		  .append("  State: ").append(state);		
 		return sb.toString();
 	}
 
 
 	public member Member() {
-		return M;
+		return member;
 	}
 
 
 	public book Book() {
-		return B;
+		return book;
 	}
 
 
