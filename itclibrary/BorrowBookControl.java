@@ -5,7 +5,7 @@ public class BorrowBookControl {
 
 	private BorrowBookUI UI;
 
-	private Library library; //Change class name and variable name
+	private Library library; //Change class name and variable name (Orig: library LIBRARY)
 	private member M;
 	private enum CONTROL_STATE { INITIALISED, READY, RESTRICTED, SCANNING, IDENTIFIED, FINALISING, COMPLETED, CANCELLED };
 	private CONTROL_STATE State;
@@ -16,7 +16,7 @@ public class BorrowBookControl {
 
 
 	public BorrowBookControl() {
-		this.LIBRARY = LIBRARY.INSTANCE();
+		this.library = library.INSTANCE(); // Change variable name to library (Orig: LIBRARY)
 		State = CONTROL_STATE.INITIALISED;
 	}
 
@@ -35,12 +35,12 @@ public class BorrowBookControl {
 		if (!State.equals(CONTROL_STATE.READY))
 			throw new RuntimeException("BorrowBookControl: cannot call cardSwiped except in READY state");
 
-		M = LIBRARY.MEMBER(MEMMER_ID);
+		M = library.MEMBER(MEMMER_ID); // Change variable name to library (Orig: LIBRARY)
 		if (M == null) {
 			UI.Display("Invalid memberId");
 			return;
 		}
-		if (LIBRARY.MEMBER_CAN_BORROW(M)) {
+		if (library.MEMBER_CAN_BORROW(M)) { // Change variable name to library (Orig: LIBRARY)
 			PENDING = new ArrayList<>();
 			UI.Set_State(BorrowBookUI.UI_STATE.SCANNING);
 			State = CONTROL_STATE.SCANNING; }
@@ -55,7 +55,7 @@ public class BorrowBookControl {
 		if (!State.equals(CONTROL_STATE.SCANNING)) {
 			throw new RuntimeException("BorrowBookControl: cannot call bookScanned except in SCANNING state");
 		}
-		BOOK = LIBRARY.Book(bookId);
+		BOOK = library.Book(bookId); // Change variable name to library (Orig: LIBRARY)
 		if (BOOK == null) {
 			UI.Display("Invalid bookId");
 			return;
@@ -68,7 +68,7 @@ public class BorrowBookControl {
 		for (book B : PENDING) {
 			UI.Display(B.toString());
 		}
-		if (LIBRARY.Loans_Remaining_For_Member(M) - PENDING.size() == 0) {
+		if (library.Loans_Remaining_For_Member(M) - PENDING.size() == 0) { // Change variable name to library (Orig: LIBRARY)
 			UI.Display("Loan limit reached");
 			Complete();
 		}
@@ -96,7 +96,7 @@ public class BorrowBookControl {
 			throw new RuntimeException("BorrowBookControl: cannot call commitLoans except in FINALISING state");
 		}
 		for (book B : PENDING) {
-			loan LOAN = LIBRARY.ISSUE_LAON(B, M);
+			loan LOAN = library.ISSUE_LAON(B, M); // Change variable name to library (Orig: LIBRARY)
 			COMPLETED.add(LOAN);
 		}
 		UI.Display("Completed Loan Slip");
