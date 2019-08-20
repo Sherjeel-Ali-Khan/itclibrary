@@ -10,8 +10,8 @@ public class BorrowBookControl {
 	private enum ControlState { INITIALISED, READY, RESTRICTED, SCANNING, IDENTIFIED, FINALISING, COMPLETED, CANCELLED }; //Change enum name (Orig: enum CONTROL_STATE)
 	private ControlState State; //Change enum name (Orig: enum CONTROL_STATE)
 
-	private List<book> PENDING;
-	private List<loan> COMPLETED;
+	private List<book> pendingBookList; // Change variable name ( To: pendingBookList; Orig: PENDING;)
+	private List<loan> completedBookList; // Change variable name ( To: completedBookList; Orig: COMPLETED;)
 	private book BOOK;
 
 
@@ -41,7 +41,7 @@ public class BorrowBookControl {
 			return;
 		}
 		if (library.MEMBER_CAN_BORROW(member)) { // Change variable name( To: library;  Orig: LIBRARY; , To: member;  Orig: M;)
-			PENDING = new ArrayList<>();
+			pendingBookList = new ArrayList<>(); // Change variable name ( To: pendingBookList; Orig: PENDING;)
 			borrowBookUi.Set_State(BorrowBookUi.UI_STATE.SCANNING);  // Change variable name to borrowBookUi (Orig: UI) // Change class name to BorrowBookUi (Orig: BorrowBookUI)
 			State = ControlState.SCANNING; } //Change enum name (Orig: enum CONTROL_STATE)
 		else
@@ -64,11 +64,11 @@ public class BorrowBookControl {
 			borrowBookUi.Display("Book cannot be borrowed");  // Change variable name to borrowBookUi (Orig: UI)
 			return;
 		}
-		PENDING.add(BOOK);
-		for (book B : PENDING) {
+		pendingBookList.add(BOOK); // Change variable name ( To: pendingBookList; Orig: PENDING;)
+		for (book B : pendingBookList) { // Change variable name ( To: pendingBookList; Orig: PENDING;)
 			borrowBookUi.Display(B.toString());  // Change variable name to borrowBookUi (Orig: UI)
 		}
-		if (library.Loans_Remaining_For_Member(member) - PENDING.size() == 0) { // Change variable name( To: library;  Orig: LIBRARY; , To: member;  Orig: M;)
+		if (library.Loans_Remaining_For_Member(member) - pendingBookList.size() == 0) { // Change variable name( To: library;  Orig: LIBRARY; , To: member;  Orig: M; ,  To: pendingBookList; Orig: PENDING;)
 			borrowBookUi.Display("Loan limit reached");  // Change variable name to borrowBookUi (Orig: UI)
 			Complete();
 		}
@@ -76,15 +76,15 @@ public class BorrowBookControl {
 
 
 	public void Complete() {
-		if (PENDING.size() == 0) {
+		if (pendingBookList.size() == 0) { // Change variable name ( To: pendingBookList; Orig: PENDING;)
 			cancel();
 		}
 		else {
 			borrowBookUi.Display("\nFinal Borrowing List");   // Change variable name to borrowBookUi (Orig: UI)
-			for (book B : PENDING) {
+			for (book B : pendingBookList) { // Change variable name ( To: pendingBookList; Orig: PENDING;)
 				borrowBookUi.Display(B.toString());  // Change variable name to borrowBookUi (Orig: UI)
 			}
-			COMPLETED = new ArrayList<loan>();
+			completedBookList = new ArrayList<loan>(); // Change variable name ( To: completedBookList; Orig: COMPLETED;)
 			borrowBookUi.Set_State(BorrowBookUi.UI_STATE.FINALISING);  // Change variable name to borrowBookUi (Orig: UI) // Change class name to BorrowBookUi (Orig: BorrowBookUI)
 			State = ControlState.FINALISING; //Change enum name (Orig: enum CONTROL_STATE)
 		}
@@ -95,12 +95,12 @@ public class BorrowBookControl {
 		if (!State.equals(ControlState.FINALISING)) { //Change enum name (Orig: enum CONTROL_STATE)
 			throw new RuntimeException("BorrowBookControl: cannot call commitLoans except in FINALISING state");
 		}
-		for (book B : PENDING) {
+		for (book B : pendingBookList) { // Change variable name ( To: pendingBookList; Orig: PENDING;)
 			loan LOAN = library.ISSUE_LAON(B, member); // Change variable name( To: library;  Orig: LIBRARY; , To: member;  Orig: M;)
-			COMPLETED.add(LOAN);
+			completedBookList.add(LOAN); // Change variable name ( To: completedBookList; Orig: COMPLETED;)
 		}
 		borrowBookUi.Display("Completed Loan Slip");  // Change variable name to borrowBookUi (Orig: UI)
-		for (loan LOAN : COMPLETED) {
+		for (loan LOAN : completedBookList) { // Change variable name ( To: completedBookList; Orig: COMPLETED;)
 			borrowBookUi.Display(LOAN.toString());  // Change variable name to borrowBookUi (Orig: UI)
 		}
 		borrowBookUi.Set_State(BorrowBookUi.UI_STATE.COMPLETED);  // Change variable name to borrowBookUi (Orig: UI) // Change class name to BorrowBookUi (Orig: BorrowBookUI)
