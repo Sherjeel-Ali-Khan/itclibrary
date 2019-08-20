@@ -24,10 +24,10 @@ public class library implements Serializable {
 	private static final double damageFee = 2.0;
 	
 	private static library SeLf;
-	private int bookId; //Change local variable bookId
-	private int memberId; //Change local variable memberId
-	private int loanId; //Change local variable loan ID
-	private Date loanDate; //Change local variable loanDate
+	private int bookId; //Change variable name BOOK_ID to bookId
+	private int memberId; //Change variable name to MEMBER_ID to memberId
+	private int loanId; //Change variable name LOAN_ID to loanId
+	private Date loanDate; //Change variable name LOAN_DATE to loanDate
 	
 	private Map<Integer, book> CATALOG;
 	private Map<Integer, member> MEMBERS;
@@ -42,9 +42,9 @@ public class library implements Serializable {
 		LOANS = new HashMap<>();
 		CURRENT_LOANS = new HashMap<>();
 		DAMAGED_BOOKS = new HashMap<>();
-		BOOK_ID = 1;
-		MEMBER_ID = 1;		
-		LOAN_ID = 1;		
+		bookId = 1;
+		memberId = 1;		
+		loanId = 1;		
 	}
 
 	
@@ -55,7 +55,7 @@ public class library implements Serializable {
 				try (ObjectInputStream LiF = new ObjectInputStream(new FileInputStream(libraryFile));) {
 			    
 					SeLf = (library) LiF.readObject();
-					Calendar.INSTANCE().Set_dATE(SeLf.LOAN_DATE);
+					Calendar.INSTANCE().Set_dATE(SeLf.loanDate);
 					LiF.close();
 				}
 				catch (Exception e) {
@@ -70,7 +70,7 @@ public class library implements Serializable {
 	
 	public static synchronized void SAVE() {
 		if (SeLf != null) {
-			SeLf.LOAN_DATE = Calendar.INSTANCE().Date();
+			SeLf.loanDate = Calendar.INSTANCE().Date();
 			try (ObjectOutputStream LoF = new ObjectOutputStream(new FileOutputStream(libraryFile));) {
 				LoF.writeObject(SeLf);
 				LoF.flush();
@@ -84,27 +84,27 @@ public class library implements Serializable {
 
 	
 	public int BookID() {
-		return BOOK_ID;
+		return bookId;
 	}
 	
 	
 	public int MemberID() {
-		return MEMBER_ID;
+		return memberId;
 	}
 	
 	
 	private int NextBID() {
-		return BOOK_ID++;
+		return bookId++;
 	}
 
 	
 	private int NextMID() {
-		return MEMBER_ID++;
+		return memberId++;
 	}
 
 	
 	private int NextLID() {
-		return LOAN_ID++;
+		return loanId++;
 	}
 
 	
