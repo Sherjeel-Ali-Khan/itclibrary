@@ -24,10 +24,10 @@ public class library implements Serializable {
 	private static final double damageFee = 2.0;
 	
 	private static library SeLf;
-	private int BOOK_ID;
-	private int MEMBER_ID;
-	private int LOAN_ID;
-	private Date LOAN_DATE;
+	private int bookId; //Change local variable bookId
+	private int memberId; //Change local variable memberId
+	private int loanId; //Change local variable loan ID
+	private Date loanDate; //Change local variable
 	
 	private Map<Integer, book> CATALOG;
 	private Map<Integer, member> MEMBERS;
