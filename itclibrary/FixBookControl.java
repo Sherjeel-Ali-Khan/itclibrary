@@ -2,7 +2,7 @@ public class FixBookControl {
 	
 	private FixBookUI ui;//change the local variable UI to ui
 	private enum CONTROL_STATE { INITIALISED, READY, FIXING };
-	private CONTROL_STATE StAtE;
+	private CONTROL_STATE state; //change the local variable state
 	
 	private library LIB;
 	private book Cur_Book;
