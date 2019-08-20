@@ -1,6 +1,6 @@
 public class FixBookControl {
 	
-	private FixBookUI UI;
+	private FixBookUI ui;//change the local variable UI to ui
 	private enum CONTROL_STATE { INITIALISED, READY, FIXING };
 	private CONTROL_STATE StAtE;
 	
