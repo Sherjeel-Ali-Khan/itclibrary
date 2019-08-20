@@ -27,7 +27,7 @@ public class library implements Serializable {
 	private int bookId; //Change local variable bookId
 	private int memberId; //Change local variable memberId
 	private int loanId; //Change local variable loan ID
-	private Date loanDate; //Change local variable
+	private Date loanDate; //Change local variable loanDate
 	
 	private Map<Integer, book> CATALOG;
 	private Map<Integer, member> MEMBERS;
