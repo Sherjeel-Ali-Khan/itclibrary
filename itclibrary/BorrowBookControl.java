@@ -12,7 +12,7 @@ public class BorrowBookControl {
 
 	private List<book> pendingBookList; // Change variable name ( To: pendingBookList; Orig: PENDING;)
 	private List<loan> completedBookList; // Change variable name ( To: completedBookList; Orig: COMPLETED;)
-	private book BOOK;
+	private Book book; //Change class name and variable name (Orig:  book BOOK)
 
 
 	public BorrowBookControl() {
@@ -51,21 +51,21 @@ public class BorrowBookControl {
 
 
 	public void Scanned(int bookId) {
-		BOOK = null;
+		book = null; // Change variable name ( To: book; Orig: BOOK;)
 		if (!State.equals(ControlState.SCANNING)) { //Change enum name (Orig: enum CONTROL_STATE)
 			throw new RuntimeException("BorrowBookControl: cannot call bookScanned except in SCANNING state");
 		}
-		BOOK = library.Book(bookId); // Change variable name to library (Orig: LIBRARY)
-		if (BOOK == null) {
+		book = library.Book(bookId); // Change variable name to library (Orig: LIBRARY) // Change variable name ( To: book; Orig: BOOK;)
+		if (book == null) { // Change variable name ( To: book; Orig: BOOK;)
 			borrowBookUi.Display("Invalid bookId");  // Change variable name to borrowBookUi (Orig: UI)
 			return;
 		}
-		if (!BOOK.AVAILABLE()) {
+		if (!book.AVAILABLE()) { // Change variable name ( To: book; Orig: BOOK;)
 			borrowBookUi.Display("Book cannot be borrowed");  // Change variable name to borrowBookUi (Orig: UI)
 			return;
 		}
-		pendingBookList.add(BOOK); // Change variable name ( To: pendingBookList; Orig: PENDING;)
-		for (book B : pendingBookList) { // Change variable name ( To: pendingBookList; Orig: PENDING;)
+		pendingBookList.add(book); // Change variable name ( To: pendingBookList; Orig: PENDING; , To: book; Orig: BOOK;)
+		for (book B : pendingBookList) { // Change variable name ( To: pendingBookList; Orig: PENDING; , To: book; Orig: BOOK;)
 			borrowBookUi.Display(B.toString());  // Change variable name to borrowBookUi (Orig: UI)
 		}
 		if (library.Loans_Remaining_For_Member(member) - pendingBookList.size() == 0) { // Change variable name( To: library;  Orig: LIBRARY; , To: member;  Orig: M; ,  To: pendingBookList; Orig: PENDING;)
@@ -81,7 +81,7 @@ public class BorrowBookControl {
 		}
 		else {
 			borrowBookUi.Display("\nFinal Borrowing List");   // Change variable name to borrowBookUi (Orig: UI)
-			for (book B : pendingBookList) { // Change variable name ( To: pendingBookList; Orig: PENDING;)
+			for (book B : pendingBookList) { // Change variable name ( To: pendingBookList; Orig: PENDING; , To: book; Orig: BOOK;)
 				borrowBookUi.Display(B.toString());  // Change variable name to borrowBookUi (Orig: UI)
 			}
 			completedBookList = new ArrayList<loan>(); // Change variable name ( To: completedBookList; Orig: COMPLETED;)
@@ -95,7 +95,7 @@ public class BorrowBookControl {
 		if (!State.equals(ControlState.FINALISING)) { //Change enum name (Orig: enum CONTROL_STATE)
 			throw new RuntimeException("BorrowBookControl: cannot call commitLoans except in FINALISING state");
 		}
-		for (book B : pendingBookList) { // Change variable name ( To: pendingBookList; Orig: PENDING;)
+		for (book B : pendingBookList) { // Change variable name ( To: pendingBookList; Orig: PENDING;,  , To: book; Orig: BOOK;)
 			loan LOAN = library.ISSUE_LAON(B, member); // Change variable name( To: library;  Orig: LIBRARY; , To: member;  Orig: M;)
 			completedBookList.add(LOAN); // Change variable name ( To: completedBookList; Orig: COMPLETED;)
 		}
