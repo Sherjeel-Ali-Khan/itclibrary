@@ -34,7 +34,7 @@ public class CalendarUtil {  //Change class name (To:CalendarUtil; Orig:Calendar
 			throw new RuntimeException(e);
 		}
 	}
-	public synchronized Date Date() {
+	public synchronized Date getDate() { //Change method name (To:getDate; Orig:Date;)
 		try {
 	        calendarObj.set(java.util.Calendar.HOUR_OF_DAY, 0); //Change variable name (To:calendarObj; Orig:CaLeNdAr;)
 	        calendarObj.set(java.util.Calendar.MINUTE, 0); //Change variable name (To:calendarObj; Orig:CaLeNdAr;)
