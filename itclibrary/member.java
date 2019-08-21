@@ -14,7 +14,7 @@ public class Member implements Serializable {
 	private int id; //Change variable ID to id
 	private double fines; //Change variable FINES to fines 
 	
-	private Map<Integer, loan> loans; //Change variable LNS to loans
+	private Map<Integer, Loan> loans; //Change variable LNS to loans
 
 	
 	public Member(String lastName, String firstName, String email, int phoneNo, int id) {
@@ -38,8 +38,8 @@ public class Member implements Serializable {
 		  .append(String.format("  Fines Owed :  $%.2f", fines))
 		  .append("\n");
 		
-		for (loan LoAn : loans.values()) {
-			sb.append(LoAn).append("\n");
+		for (Loan loan : loans.values()) {
+			sb.append(loan).append("\n");
 		}		  
 		return sb.toString();
 	}
@@ -50,8 +50,8 @@ public class Member implements Serializable {
 	}
 
 	
-	public List<loan> getLoans() { //Change the method name GeT_LoAnS to getLoans
-		return new ArrayList<loan>(loans.values());
+	public List<Loan> getLoans() { //Change the method name GeT_LoAnS to getLoans
+		return new ArrayList<Loan>(loans.values());
 	}
 
 	
@@ -65,7 +65,7 @@ public class Member implements Serializable {
 	}
 
 	
-	public void takeOutLoan(loan loan) { //Change the method name Take_Out_Loan to takeOutLoan
+	public void takeOutLoan(Loan loan) { //Change the method name Take_Out_Loan to takeOutLoan
 		if (!loans.containsKey(loan.getId())) {
 			loans.put(loan.getId(), loan);
 		}
@@ -105,7 +105,7 @@ public class Member implements Serializable {
 	}
 
 
-	public void dischargeLoan(loan loan) { // change the variable name to loan and Change the method name dIsChArGeLoAn to dischargeLoan
+	public void dischargeLoan(Loan loan) { // change the variable name to loan and Change the method name dIsChArGeLoAn to dischargeLoan
 		if (loans.containsKey(loan.getId())) {
 			loans.remove(loan.getId());
 		}
