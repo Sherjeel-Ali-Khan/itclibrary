@@ -31,17 +31,17 @@ public class loan implements Serializable {
 	}
 
 	
-	public boolean OVer_Due() {
+	public boolean isOverDue() { //Change Method name OVer_Due to isOverDue
 		return state == LOAN_STATE.OVER_DUE;
 	}
 
 	
-	public Integer ID() {
+	public Integer getId() { //Change method name ID to getID
 		return id;
 	}
 
 
-	public Date Get_Due_Date() {
+	public Date getDueDate() { //Change method name Get_Due_Date to getDueDate
 		return date;
 	}
 	
@@ -51,7 +51,7 @@ public class loan implements Serializable {
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("Loan:  ").append(id).append("\n")
-		  .append("  Borrower ").append(member.GeT_ID()).append(" : ")
+		  .append("  Borrower ").append(member.getId()).append(" : ")
 		  .append(member.Get_LastName()).append(", ").append(member.Get_FirstName()).append("\n")
 		  .append("  Book ").append(book.id()).append(" : " )
 		  .append(book.TITLE()).append("\n")
@@ -61,17 +61,17 @@ public class loan implements Serializable {
 	}
 
 
-	public member Member() {
+	public member getMember() { //Change method name Member to getMember
 		return member;
 	}
 
 
-	public book Book() {
+	public book getBook() { //Change method name Book to getBook
 		return book;
 	}
 
 
-	public void DiScHaRgE() {
+	public void getDischargeStatus() { //Change method name DiScHaRgE to getDischargeStatus
 		state = LOAN_STATE.DISCHARGED;		
 	}
 
