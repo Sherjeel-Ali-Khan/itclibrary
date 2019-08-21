@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-
+// Initiate to fix "ReturnBookUI.java" file
 public class ReturnBookUI {
 
 	public static enum UI_STATE { INITIALISED, READY, INSPECTING, COMPLETED };
