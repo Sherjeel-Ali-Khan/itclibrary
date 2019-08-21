@@ -8,7 +8,7 @@ public class BorrowBookControl {
 	private Library library; //Change class name and variable name (Orig: library LIBRARY)
 	private Member member; //Change class name and variable name (Orig: member M)
 	private enum ControlState { INITIALISED, READY, RESTRICTED, SCANNING, IDENTIFIED, FINALISING, COMPLETED, CANCELLED }; //Change enum name (Orig: enum CONTROL_STATE)
-	private ControlState State; //Change enum name (Orig: enum CONTROL_STATE)
+	private ControlState ctrlState; //Change enum name  and variable name  (Orig: enum CONTROL_STATE)  (To:ctrlState; Orig:State;)
 
 	private List<book> pendingBookList; // Change variable name ( To: pendingBookList; Orig: PENDING;)
 	private List<loan> completedBookList; // Change variable name ( To: completedBookList; Orig: COMPLETED;)
@@ -17,22 +17,22 @@ public class BorrowBookControl {
 
 	public BorrowBookControl() {
 		this.library = library.INSTANCE(); // Change variable name to library (Orig: LIBRARY)
-		State = ControlState.INITIALISED; //Changed enum name (Orig: enum CONTROL_STATE)
+		ctrlState = ControlState.INITIALISED; //Changed enum name (Orig: enum CONTROL_STATE)  (To:ctrlState; Orig:State;)
 	}
 
 
 	public void setUI(BorrowBookUi ui) { // Change class name to BorrowBookUi (Orig: BorrowBookUI)
-		if (!State.equals(ControlState.INITIALISED)) //Changed enum name (Orig: enum CONTROL_STATE)
+		if (!ctrlState.equals(ControlState.INITIALISED)) //Changed enum name (Orig: enum CONTROL_STATE)  (To:ctrlState; Orig:State;)
 			throw new RuntimeException("BorrowBookControl: cannot call setUI except in INITIALISED state");
 
 		this.borrowBookUi = ui; // Change variable name to borrowBookUi (Orig: UI)
 		ui.Set_State(BorrowBookUi.UI_STATE.READY); // Change class name to BorrowBookUi (Orig: BorrowBookUI) // Change class name to BorrowBookUi (Orig: BorrowBookUI)
-		State = ControlState.READY; //Changed enum name (Orig: enum CONTROL_STATE)
+		ctrlState = ControlState.READY; //Changed enum name (Orig: enum CONTROL_STATE) (To:ctrlState; Orig:State;)
 	}
 
 
 	public void Swiped(int MEMMER_ID) {
-		if (!State.equals(ControlState.READY)) //Change enum name (Orig: enum CONTROL_STATE)
+		if (!ctrlState.equals(ControlState.READY)) //Change enum name (Orig: enum CONTROL_STATE) (To:ctrlState; Orig:State;)
 			throw new RuntimeException("BorrowBookControl: cannot call cardSwiped except in READY state");
 
 		member = library.MEMBER(MEMMER_ID); // Change variable name ( To: library;  Orig: LIBRARY; , To: member;  Orig: M;)
@@ -43,7 +43,7 @@ public class BorrowBookControl {
 		if (library.MEMBER_CAN_BORROW(member)) { // Change variable name( To: library;  Orig: LIBRARY; , To: member;  Orig: M;)
 			pendingBookList = new ArrayList<>(); // Change variable name ( To: pendingBookList; Orig: PENDING;)
 			borrowBookUi.Set_State(BorrowBookUi.UI_STATE.SCANNING);  // Change variable name to borrowBookUi (Orig: UI) // Change class name to BorrowBookUi (Orig: BorrowBookUI)
-			State = ControlState.SCANNING; } //Change enum name (Orig: enum CONTROL_STATE)
+			ctrlState = ControlState.SCANNING; } //Change enum name (Orig: enum CONTROL_STATE) (To:ctrlState; Orig:State;)
 		else
 		{
 			borrowBookUi.Display("Member cannot borrow at this time");  // Change variable name to borrowBookUi (Orig: UI)
@@ -52,7 +52,7 @@ public class BorrowBookControl {
 
 	public void Scanned(int bookId) {
 		book = null; // Change variable name ( To: book; Orig: BOOK;)
-		if (!State.equals(ControlState.SCANNING)) { //Change enum name (Orig: enum CONTROL_STATE)
+		if (!ctrlState.equals(ControlState.SCANNING)) { //Change enum name (Orig: enum CONTROL_STATE) (To:ctrlState; Orig:State;)
 			throw new RuntimeException("BorrowBookControl: cannot call bookScanned except in SCANNING state");
 		}
 		book = library.Book(bookId); // Change variable name to library (Orig: LIBRARY) // Change variable name ( To: book; Orig: BOOK;)
@@ -86,13 +86,13 @@ public class BorrowBookControl {
 			}
 			completedBookList = new ArrayList<loan>(); // Change variable name ( To: completedBookList; Orig: COMPLETED;)
 			borrowBookUi.Set_State(BorrowBookUi.UI_STATE.FINALISING);  // Change variable name to borrowBookUi (Orig: UI) // Change class name to BorrowBookUi (Orig: BorrowBookUI)
-			State = ControlState.FINALISING; //Change enum name (Orig: enum CONTROL_STATE)
+			ctrlState = ControlState.FINALISING; //Change enum name (Orig: enum CONTROL_STATE) (To:ctrlState; Orig:State;)
 		}
 	}
 
 
 	public void Commit_LOans() {
-		if (!State.equals(ControlState.FINALISING)) { //Change enum name (Orig: enum CONTROL_STATE)
+		if (!ctrlState.equals(ControlState.FINALISING)) { //Change enum name (Orig: enum CONTROL_STATE) (To:ctrlState; Orig:State;)
 			throw new RuntimeException("BorrowBookControl: cannot call commitLoans except in FINALISING state");
 		}
 		for (book B : pendingBookList) { // Change variable name ( To: pendingBookList; Orig: PENDING;,  , To: book; Orig: BOOK;)
@@ -104,13 +104,13 @@ public class BorrowBookControl {
 			borrowBookUi.Display(LOAN.toString());  // Change variable name to borrowBookUi (Orig: UI)
 		}
 		borrowBookUi.Set_State(BorrowBookUi.UI_STATE.COMPLETED);  // Change variable name to borrowBookUi (Orig: UI) // Change class name to BorrowBookUi (Orig: BorrowBookUI)
-		State = ControlState.COMPLETED; //Change enum name (Orig: enum CONTROL_STATE)
+		ctrlState = ControlState.COMPLETED; //Change enum name (Orig: enum CONTROL_STATE) (To:ctrlState; Orig:State;)
 	}
 
 
 	public void cancel() {
 		UI.Set_State(BorrowBookUi.UI_STATE.CANCELLED);  // Change variable name to borrowBookUi (Orig: UI) // Change class name to BorrowBookUi (Orig: BorrowBookUI)
-		State = ControlState.CANCELLED; //Change enum name (Orig: enum CONTROL_STATE)
+		ctrlState = ControlState.CANCELLED; //Change enum name (Orig: enum CONTROL_STATE) (To:ctrlState; Orig:State;) 
 	}
 
 
