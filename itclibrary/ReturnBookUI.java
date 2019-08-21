@@ -75,11 +75,11 @@ public class ReturnBookUI {
 	
     // Create "input" method which displays the text and takes an input from user. Then return the input as a string
     // Its takes "prompt" string to display the prompt and takes input from the user.
-	private String input(String prompt) {
-		System.out.print(prompt);
-		return input.nextLine();
-	}	
-		
+    private String input(String prompt) {
+        System.out.print(prompt); // It displays the prompt text which it takes from argument
+        String userInput = input.nextLine(); // It takes input from user and save it to "userInput"
+        return userInput; // It return "userInput" as a string
+    }
 
     // Create "output" method which displays any object from Object class or inherit from object class (i.e. string, integer, float, array, etc)
     // This method requires any object from Object class or inherit from object class		
