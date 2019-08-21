@@ -7,7 +7,7 @@ public class CalendarUtil {  //Change class name (To:CalendarUtil; Orig:Calendar
 	private static java.util.Calendar calendarObj; //Change variable name (To:calendarObj; Orig:CaLeNdAr;) Object of original java util class
 
 
-	private Calendar() {
+	private CalendarUtil() { //Change default constructor name (To:CalendarUtil; Orig:Calendar;)
 		calendarObj = java.util.Calendar.getInstance(); //Change variable name (To:calendarObj; Orig:CaLeNdAr;)
 	}
 
