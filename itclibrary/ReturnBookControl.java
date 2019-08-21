@@ -1,13 +1,13 @@
 // Initiate to fix "ReturnBookControl.java" file
 public class ReturnBookControl {
 
-	private ReturnBookUI Ui;
-	private enum CONTROL_STATE { INITIALISED, READY, INSPECTING };
-	private CONTROL_STATE sTaTe;
-	
-	private library lIbRaRy;
-	private loan CurrENT_loan;
-	
+
+    private ReturnBookUI returnBookUI; // Create an object of ReturnBookUI class to use the functionality of ReturnBookUI
+    private enum ControlState { INITIALISED, READY, INSPECTING }; //Create an enum "ControlState" and initialize to INITIALISED, READY, and INSPECTING
+    private ControlState controlState; // Create an object of ControlState class to use the functionality of ControlState
+
+    private Library library;  // Create an object of Library class to use the functionality of Library
+    private Loan currentLoan; // Create an object of Loan class to use the functionality of Loan
 
 	public ReturnBookControl() {
 		this.lIbRaRy = lIbRaRy.INSTANCE();
