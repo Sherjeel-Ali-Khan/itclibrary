@@ -88,10 +88,10 @@ public class ReturnBookUI {
     }
 
     // Create "display" method which uses output method of the same class
-    // "output" method is private so it can not be used outside the class but this method is public			
-	public void display(Object object) {
-		output(object);
-	}
+    // "output" method is private so it can not be used outside the class but this method is public
+    public void display(Object object) {
+        output(object);
+    }
 	
     // Create "setState" method which sets the state of UIState.
     // It requires UIState to set the state of this class
