@@ -89,15 +89,16 @@ public class ReturnBookControl {
 
     // Create dischargeLoan method which discharge the loan according to the "isDamaged" boolean which is passing to this method.
     // This method requires isDamaged boolean to discharge loan functionality of library class.
-	public void dischargeLoan(boolean isDamaged) {
-		if (!sTaTe.equals(CONTROL_STATE.INSPECTING)) {
-			throw new RuntimeException("ReturnBookControl: cannot call dischargeLoan except in INSPECTING state");
-		}	
-		lIbRaRy.Discharge_loan(CurrENT_loan, isDamaged);
-		CurrENT_loan = null;
-		Ui.Set_State(ReturnBookUI.UI_STATE.READY);
-		sTaTe = CONTROL_STATE.READY;				
-	}
+    public void dischargeLoan(boolean isDamaged) {
+        // If controlState is not in the state of "INSPECTING" then throw an exception error of following text
+        if (!controlState.equals(ControlState.INSPECTING)) { // If controlState is not in the state of "INSPECTING" then follows the code in IF block
+            throw new RuntimeException("ReturnBookControl: cannot call dischargeLoan except in INSPECTING state");  // Throw an exception error of following text
+        }
 
+        library.dischargeLoan(currentLoan, isDamaged); // Discharge loan by using method "dischargeLoan" of Library class and pass currentLoan as a Loan object and isDamaged boolean
+        currentLoan = null; // Assign currentLoan to null
+        returnBookUI.setState(ReturnBookUI.UI_STATE.READY); // Set the state of returnBookUI object to "READY" by calling their method "setState" and passing the static enum of ReturnBookUI
+        controlState = ControlState.READY; // Set the state of controlState to "READY" state
+    }
 
 }
