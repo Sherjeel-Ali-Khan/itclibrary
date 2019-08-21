@@ -11,7 +11,7 @@ public class CalendarUtil {  //Change class name (To:CalendarUtil; Orig:Calendar
 		CaLeNdAr = java.util.Calendar.getInstance();
 	}
 
-	public static CalendarUtil INSTANCE() {
+	public static CalendarUtil instance() { //Change method name (To:instance; Orig:INSTANCE;)
 		if (calendarUtil == null) { //Change variable name (To:calendarUtil; Orig:SeLf;)
 			calendarUtil = new CalendarUtil(); //Change variable name (To:calendarUtil; Orig:SeLf;)
 		}
