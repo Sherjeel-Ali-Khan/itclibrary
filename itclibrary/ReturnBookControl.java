@@ -9,12 +9,18 @@ public class ReturnBookControl {
     private Library library;  // Create an object of Library class to use the functionality of Library
     private Loan currentLoan; // Create an object of Loan class to use the functionality of Loan
 
+
+    // Create a constructor of ReturnBookControl
+    // Referring library object to the singleton of Library class
+    // Assign the state to controlState as "INITIALISED"
 	public ReturnBookControl() {
 		this.lIbRaRy = lIbRaRy.INSTANCE();
 		sTaTe = CONTROL_STATE.INITIALISED;
 	}
 	
 	
+    // Create setUI method which sets user interface to the settings which is passing to the method
+    // This method requires ReturnBookUI object to set user interface
 	public void setUI(ReturnBookUI ui) {
 		if (!sTaTe.equals(CONTROL_STATE.INITIALISED)) {
 			throw new RuntimeException("ReturnBookControl: cannot call setUI except in INITIALISED state");
@@ -25,6 +31,9 @@ public class ReturnBookControl {
 	}
 
 
+    // Create bookScanned method which finds book in Library by using bookId. If the book is found, then display book, current loan and over dues.
+    // Otherwise shows errors
+    // This method requires bookId integer to find valid book
 	public void bookScanned(int Book_ID) {
 		if (!sTaTe.equals(CONTROL_STATE.READY)) {
 			throw new RuntimeException("ReturnBookControl: cannot call bookScanned except in READY state");
@@ -56,6 +65,7 @@ public class ReturnBookControl {
 	}
 
 
+    // Create scanningComplete method which changes the state of returnBookUI to "COMPLETED"
 	public void scanningComplete() {
 		if (!sTaTe.equals(CONTROL_STATE.READY)) {
 			throw new RuntimeException("ReturnBookControl: cannot call scanningComplete except in READY state");
@@ -64,6 +74,8 @@ public class ReturnBookControl {
 	}
 
 
+    // Create dischargeLoan method which discharge the loan according to the "isDamaged" boolean which is passing to this method.
+    // This method requires isDamaged boolean to discharge loan functionality of library class.
 	public void dischargeLoan(boolean isDamaged) {
 		if (!sTaTe.equals(CONTROL_STATE.INSPECTING)) {
 			throw new RuntimeException("ReturnBookControl: cannot call dischargeLoan except in INSPECTING state");
