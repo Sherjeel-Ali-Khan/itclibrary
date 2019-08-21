@@ -47,10 +47,10 @@ public class Book implements Serializable {
         return title; // return string "tile" of the book
     }
 
-    // Create isAvailable method to check that the book is available or not, in the form of boolean.	
-	public boolean isAvailable() {
-		return State == STATE.AVAILABLE;
-	}
+    // Create isAvailable method to check that the book is available or not, in the form of boolean.
+    public boolean isAvailable() {
+        return state == State.AVAILABLE; // return boolean as true or false if the state is AVAILABLE or not respectively
+    }
 
     // Create isOnLoan method to check that the book is on loan or not, in the form of boolean.	
 	public boolean isOnLoan() {
