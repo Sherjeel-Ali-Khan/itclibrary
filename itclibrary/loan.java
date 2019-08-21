@@ -9,12 +9,12 @@ public class loan implements Serializable {
 	
 	private int id; //Change variable name ID to id
 	private book book; //Change variable name B to book
-	private member member; //Change variable name M to member
+	private Member member; //Change variable name M to member
 	private Date date; //Change variable name D to date
 	private LOAN_STATE state; 
 
 	
-	public loan(int loanId, book book, member member, Date dueDate) {
+	public loan(int loanId, book book, Member member, Date dueDate) {
 		this.id = loanId;
 		this.book = book;
 		this.member = member;
@@ -61,7 +61,7 @@ public class loan implements Serializable {
 	}
 
 
-	public member getMember() { //Change method name Member to getMember
+	public Member getMember() { //Change method name Member to getMember
 		return member;
 	}
 
