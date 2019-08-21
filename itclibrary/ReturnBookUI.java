@@ -3,12 +3,11 @@ import java.util.Scanner;
 // Initiate to fix "ReturnBookUI.java" file
 public class ReturnBookUI {
 
-	public static enum UI_STATE { INITIALISED, READY, INSPECTING, COMPLETED };
+    public static enum UIState { INITIALISED, READY, INSPECTING, COMPLETED }; //Create an enum "UIState" and define states as INITIALISED, READY, INSPECTING, and COMPLETED
+    private UIState state;  // Create an instance of "UIState" enum and name it as "state"
 
-	private ReturnBookControl CoNtRoL;
-	private Scanner input;
-	private UI_STATE StATe;
-
+    private ReturnBookControl returnBookControl; // Create an object of ReturnBookControl class to use the functionality of ReturnBookControl
+    private Scanner input; // Create an object of Scanner to take an input from user
 	
 	public ReturnBookUI(ReturnBookControl control) {
 		this.CoNtRoL = control;
