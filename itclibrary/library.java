@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @SuppressWarnings("serial")
-public class library implements Serializable {
+public class Library implements Serializable {
 	
 	private static final String libraryFile = "library.obj";
 	private static final int loanLimit = 2;
@@ -23,7 +23,7 @@ public class library implements Serializable {
 	private static final double maxFinesOwed = 1.0;
 	private static final double damageFee = 2.0;
 	
-	private static library SeLf;
+	private static Library SeLf;
 	private int bookId; //Change variable name BOOK_ID to bookId
 	private int memberId; //Change variable name to MEMBER_ID to memberId
 	private int loanId; //Change variable name LOAN_ID to loanId
@@ -36,7 +36,7 @@ public class library implements Serializable {
 	private Map<Integer, book> damagedBooks; //Change map name DAMAGED_BOOKS to damagedBooks
 	
 
-	private library() {
+	private Library() {
 		catalog = new HashMap<>();
 		members = new HashMap<>();
 		loans = new HashMap<>();
@@ -48,13 +48,13 @@ public class library implements Serializable {
 	}
 
 	
-	public static synchronized library instance() {		
+	public static synchronized Library instance() {		
 		if (SeLf == null) {
 			Path PATH = Paths.get(libraryFile);			
 			if (Files.exists(PATH)) {	
 				try (ObjectInputStream LiF = new ObjectInputStream(new FileInputStream(libraryFile));) {
 			    
-					SeLf = (library) LiF.readObject();
+					SeLf = (Library) LiF.readObject();
 					Calendar.INSTANCE().Set_dATE(SeLf.loanDate);
 					LiF.close();
 				}
@@ -62,7 +62,7 @@ public class library implements Serializable {
 					throw new RuntimeException(e);
 				}
 			}
-			else SeLf = new library();
+			else SeLf = new Library();
 		}
 		return SeLf;
 	}
