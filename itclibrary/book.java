@@ -1,6 +1,6 @@
 import java.io.Serializable;
 
-
+// Initiate to fix "book.java" file
 @SuppressWarnings("serial")
 public class book implements Serializable {
 	
