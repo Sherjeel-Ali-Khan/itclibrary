@@ -95,7 +95,7 @@ public class ReturnBookUI {
 	
     // Create "setState" method which sets the state of UIState.
     // It requires UIState to set the state of this class
-	public void setState(UIState state) {
-		this.StATe = state;
-	}	
+    public void setState(UIState state) {
+        this.state = state; // Assign state of the class to the state passes from arguments
+    }
 }
