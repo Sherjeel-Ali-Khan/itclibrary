@@ -2,7 +2,8 @@ import java.io.Serializable;
 
 // Initiate to fix "book.java" file
 @SuppressWarnings("serial")
-public class book implements Serializable {
+// Implement Book class by Serializable in order to send data through network or other platform
+public class Book implements Serializable {
 	
 	private String TITLE;
 	private String AUTHOR;
