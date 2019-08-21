@@ -79,13 +79,13 @@ public class ReturnBookControl {
     }
 
     // Create scanningComplete method which changes the state of returnBookUI to "COMPLETED"
-	public void scanningComplete() {
-		if (!sTaTe.equals(CONTROL_STATE.READY)) {
-			throw new RuntimeException("ReturnBookControl: cannot call scanningComplete except in READY state");
-		}	
-		Ui.Set_State(ReturnBookUI.UI_STATE.COMPLETED);		
-	}
-
+    public void scanningComplete() {
+        // If controlState is not in the state of "READY" then throw an exception error of following text
+        if (!controlState.equals(ControlState.READY)) { // If controlState is not in the state of "READY" then follows the code in IF block
+            throw new RuntimeException("ReturnBookControl: cannot call scanningComplete except in READY state"); // Throw an exception error of following text
+        }
+        returnBookUI.setState(ReturnBookUI.UI_STATE.COMPLETED); // Set the state of controlState to "COMPLETED" state
+    }
 
     // Create dischargeLoan method which discharge the loan according to the "isDamaged" boolean which is passing to this method.
     // This method requires isDamaged boolean to discharge loan functionality of library class.
