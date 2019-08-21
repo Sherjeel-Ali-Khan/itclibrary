@@ -16,12 +16,12 @@ import java.util.Map;
 @SuppressWarnings("serial")
 public class Library implements Serializable {
 	
-	private static final String libraryFile = "library.obj";
-	private static final int loanLimit = 2;
-	private static final int loanPeriod = 2;
-	private static final double finePerDay = 1.0;
-	private static final double maxFinesOwed = 1.0;
-	private static final double damageFee = 2.0;
+	private static final String LIBRARY_FILE = "library.obj"; //Change the variable name libraryFile to LIBRARY_FILE
+	private static final int LOAN_LIMIT = 2; //Change the variable name loanLimit to LOAN_LIMIT
+	private static final int LOAN_PERIOD = 2; //Change the variable name loanPeriod to LOAN_PERIOD
+	private static final double FINE_PER_DAY = 1.0; //Change the variable name finePerDay to FINE_PER_DAY
+	private static final double MAX_FINES_OWED = 1.0; //Change the variable name maxFinesOwed to MAX_FINES_OWED
+	private static final double DAMAGE_FREE = 2.0; //Change the variable name damageFee to DAMAGE_FREE
 	
 	private static Library SeLf;
 	private int bookId; //Change variable name BOOK_ID to bookId
@@ -50,9 +50,9 @@ public class Library implements Serializable {
 	
 	public static synchronized Library instance() {		
 		if (SeLf == null) {
-			Path PATH = Paths.get(libraryFile);			
+			Path PATH = Paths.get(LIBRARY_FILE);			
 			if (Files.exists(PATH)) {	
-				try (ObjectInputStream LiF = new ObjectInputStream(new FileInputStream(libraryFile));) {
+				try (ObjectInputStream LiF = new ObjectInputStream(new FileInputStream(LIBRARY_FILE));) {
 			    
 					SeLf = (Library) LiF.readObject();
 					Calendar.INSTANCE().Set_dATE(SeLf.loanDate);
@@ -71,7 +71,7 @@ public class Library implements Serializable {
 	public static synchronized void save() { //Change mehod name SAVE to save
 		if (SeLf != null) {
 			SeLf.loanDate = Calendar.INSTANCE().Date();
-			try (ObjectOutputStream LoF = new ObjectOutputStream(new FileOutputStream(libraryFile));) {
+			try (ObjectOutputStream LoF = new ObjectOutputStream(new FileOutputStream(LIBRARY_FILE));) {
 				LoF.writeObject(SeLf);
 				LoF.flush();
 				LoF.close();	
@@ -152,15 +152,15 @@ public class Library implements Serializable {
 
 	
 	public int getLoanLimit() { //Change method name LOAN_LIMIT getLoanLimit
-		return loanLimit;
+		return LOAN_LIMIT;
 	}
 
 	
 	public boolean isMemberCanBorrow(Member member) {	//Change method name MEMBER_CAN_BORROW to isMemberCanBorrow
-		if (member.getNumberOfCurrentLoans() == loanLimit ) 
+		if (member.getNumberOfCurrentLoans() == LOAN_LIMIT ) 
 			return false;
 				
-		if (member.getFinesOwed() >= maxFinesOwed) 
+		if (member.getFinesOwed() >= MAX_FINES_OWED) 
 			return false;
 				
 		for (Loan loan : member.getLoans()) 
@@ -172,12 +172,12 @@ public class Library implements Serializable {
 
 	
 	public int loansRemainingForMember(Member member) {	//Change method name Loans_Remaining_For_Member to loansRemainingForMember	
-		return loanLimit - member.getNumberOfCurrentLoans();
+		return LOAN_LIMIT - member.getNumberOfCurrentLoans();
 	}
 
 	
 	public Loan issueLoan(book book, Member member) { //Change method name ISSUE_LAON to issueLoan
-		Date dueDate = Calendar.INSTANCE().Due_Date(loanPeriod);
+		Date dueDate = Calendar.INSTANCE().Due_Date(LOAN_PERIOD);
 		Loan loan = new Loan(getNextLID(), book, member, dueDate);
 		member.takeOutLoan(loan);
 		book.Borrow();
@@ -198,7 +198,7 @@ public class Library implements Serializable {
 	public double calculateOverDueFine(Loan loan) { //Change method name CalculateOverDueFine to calculateOverDueFine
 		if (loan.isOverDue()) {
 			long daysOverDue = Calendar.INSTANCE().Get_Days_Difference(loan.getDueDate());
-			double fine = daysOverDue * finePerDay;
+			double fine = daysOverDue * FINE_PER_DAY;
 			return fine;
 		}
 		return 0.0;		
@@ -215,7 +215,7 @@ public class Library implements Serializable {
 		member.dischargeLoan(currentLoan);
 		book.Return(isDamaged);
 		if (isDamaged) {
-			member.addFine(damageFee);
+			member.addFine(DAMAGE_FREE);
 			damagedBooks.put(book.ID(), book);
 		}
 		currentLoan.getDischargeStatus();
