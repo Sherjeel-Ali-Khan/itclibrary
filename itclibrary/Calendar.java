@@ -3,7 +3,7 @@ import java.util.concurrent.TimeUnit;
 
 public class CalendarUtil {  //Change class name (To:CalendarUtil; Orig:Calendar;)
 
-	private static Calendar SeLf;
+	private static CalendarUtil calendarUtil;  //Change variable name (To:calendarUtil; Orig:SeLf;)
 	private static java.util.Calendar CaLeNdAr;
 
 
@@ -11,11 +11,11 @@ public class CalendarUtil {  //Change class name (To:CalendarUtil; Orig:Calendar
 		CaLeNdAr = java.util.Calendar.getInstance();
 	}
 
-	public static Calendar INSTANCE() {
-		if (SeLf == null) {
-			SeLf = new Calendar();
+	public static CalendarUtil INSTANCE() {
+		if (calendarUtil == null) { //Change variable name (To:calendarUtil; Orig:SeLf;)
+			calendarUtil = new CalendarUtil(); //Change variable name (To:calendarUtil; Orig:SeLf;)
 		}
-		return SeLf;
+		return calendarUtil; //Change variable name (To:calendarUtil; Orig:SeLf;)
 	}
 
 	public void incrementDate(int days) {
