@@ -72,7 +72,7 @@ public class ReturnBookUI {
             }
         }
     }
-	
+
     // Create "input" method which displays the text and takes an input from user. Then return the input as a string
     // Its takes "prompt" string to display the prompt and takes input from the user.
     private String input(String prompt) {
@@ -92,10 +92,11 @@ public class ReturnBookUI {
     public void display(Object object) {
         output(object);
     }
-	
+
     // Create "setState" method which sets the state of UIState.
     // It requires UIState to set the state of this class
     public void setState(UIState state) {
         this.state = state; // Assign state of the class to the state passes from arguments
     }
 }
+// Finalize "ReturnBookUI.java" file
