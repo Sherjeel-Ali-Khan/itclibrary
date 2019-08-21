@@ -9,7 +9,7 @@ public class ReturnBookUI {
     private ReturnBookControl returnBookControl; // Create an object of ReturnBookControl class to use the functionality of ReturnBookControl
     private Scanner input; // Create an object of Scanner to take an input from user
 	
-	public ReturnBookUI(ReturnBookControl control) {
+	public ReturnBookUI(ReturnBookControl returnBookControl) {
 		this.CoNtRoL = control;
 		input = new Scanner(System.in);
 		StATe = UI_STATE.INITIALISED;
@@ -17,7 +17,7 @@ public class ReturnBookUI {
 	}
 
 
-	public void RuN() {		
+	public void run() {		
 		output("Return Book Use Case UI\n");
 		
 		while (true) {
@@ -78,7 +78,7 @@ public class ReturnBookUI {
 		output(object);
 	}
 	
-	public void Set_State(UI_STATE state) {
+	public void setState(UIState state) {
 		this.StATe = state;
 	}
 
