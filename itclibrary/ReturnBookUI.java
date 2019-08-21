@@ -82,11 +82,11 @@ public class ReturnBookUI {
     }
 
     // Create "output" method which displays any object from Object class or inherit from object class (i.e. string, integer, float, array, etc)
-    // This method requires any object from Object class or inherit from object class		
-	private void output(Object object) {
-		System.out.println(object);
-	}
-	
+    // This method requires any object from Object class or inherit from object class
+    private void output(Object object) {
+        System.out.println(object);  // It displays the any object from Object class or inherit from object class
+    }
+
     // Create "display" method which uses output method of the same class
     // "output" method is private so it can not be used outside the class but this method is public			
 	public void display(Object object) {
