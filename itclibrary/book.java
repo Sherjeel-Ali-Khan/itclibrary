@@ -52,10 +52,10 @@ public class Book implements Serializable {
         return state == State.AVAILABLE; // return boolean as true or false if the state is AVAILABLE or not respectively
     }
 
-    // Create isOnLoan method to check that the book is on loan or not, in the form of boolean.	
-	public boolean isOnLoan() {
-		return State == STATE.ON_LOAN;
-	}
+    // Create isOnLoan method to check that the book is on loan or not, in the form of boolean.
+    public boolean isOnLoan() {
+        return state == State.ON_LOAN;  // return boolean as true or false if the state is on loan or not respectively
+    }
 
     // Create isDamaged method to check that the book is damaged or not, in the form of boolean.	
 	public boolean isDamaged() {
