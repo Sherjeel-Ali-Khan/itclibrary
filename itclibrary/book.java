@@ -38,9 +38,9 @@ public class Book implements Serializable {
     }
 
     // Create getId method to get unique identity of the book
-	public Integer getId() {
-		return ID;
-	}
+    public Integer getId() {
+        return id; // return integer "id" of the book
+    }
 
     // Create getTitle method to get the tile of the book
 	public String getTitle() {
