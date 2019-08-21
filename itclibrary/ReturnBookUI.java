@@ -23,51 +23,55 @@ public class ReturnBookUI {
     // If state is READY then ask bookId from user then pass it to ReturnBookControl class by their method "bookScanned"
     // If state is INSPECTING then ask user that book is damaged or not. Then pass the damaged status to returnBookControl by their method "dischargeLoan"
     // If state is INITIALISED then run again the whole process and if state is COMPLETED then show completion message
-	public void run() {		
-		output("Return Book Use Case UI\n");
-		
-		while (true) {
-			
-			switch (StATe) {
-			
-			case INITIALISED:
-				break;
-				
-			case READY:
-				String Book_STR = input("Scan Book (<enter> completes): ");
-				if (Book_STR.length() == 0) {
-					CoNtRoL.Scanning_Complete();
-				}
-				else {
-					try {
-						int Book_Id = Integer.valueOf(Book_STR).intValue();
-						CoNtRoL.Book_scanned(Book_Id);
-					}
-					catch (NumberFormatException e) {
-						output("Invalid bookId");
-					}					
-				}
-				break;				
-				
-			case INSPECTING:
-				String ans = input("Is book damaged? (Y/N): ");
-				boolean Is_Damaged = false;
-				if (ans.toUpperCase().equals("Y")) {					
-					Is_Damaged = true;
-				}
-				CoNtRoL.Discharge_loan(Is_Damaged);
-			
-			case COMPLETED:
-				output("Return processing complete");
-				return;
-			
-			default:
-				output("Unhandled state");
-				throw new RuntimeException("ReturnBookUI : unhandled state :" + StATe);			
-			}
-		}
-	}
+    public void run() {
+        output("Return Book Use Case UI\n"); // Display the this text by using "output" method
+        while (true) {  // Using true in while to make this loop infinite, unless it break from inside (use "return")
+            switch (state) {    // Use switch block to use the code according to enum state
 
+                // If state is in "INITIALISED" state then exit the switch block
+                case INITIALISED:
+                    break;          // Exit the switch block
+
+                // If state is in "READY" state then
+                case READY:
+                    String bookIdString = input("Scan Book (<enter> completes): ");  // Take book id as an input form user and save it to bookIdString
+                    if (bookIdString.length() == 0) { // if user inputs nothing then call scanningComplete method of ReturnBookControl
+                        returnBookControl.scanningComplete();
+                    }
+                    else { // If user input is not empty
+                        // Use try / catch to handle an error of NumberFormatException
+                        try { // In try block the conversion from string to integer takes place
+                            int bookId = Integer.valueOf(bookIdString).intValue(); // Convert string(bookIdString) to integer (bookId)
+                            returnBookControl.bookScanned(bookId); // Pass bookId to the bookScanned method of ReturnBookControl class
+                        }
+                        catch (NumberFormatException e) { // If user inputs any other character than number then it shows an error message of following text
+                            output("Invalid bookId");
+                        }
+                    }
+                    break;          // Exit the switch block
+
+                // If state is in "INSPECTING" state then ask question from user that the book is damaged or not.
+                // Then pass isDamaged boolean to dischargeLoan method of ReturnBookControl class
+                case INSPECTING:
+                    String isDamagedAnswer = input("Is book damaged? (Y/N): "); // Takes an input from user and save it to isDamagedAnswer string
+                    boolean isDamaged = false; // Initialize isDamaged boolean to false as basic
+                    if (isDamagedAnswer.toUpperCase().equals("Y")) { // If user says book is damaged in the form of "Y" then assign "true" to isDamaged boolean
+                        isDamaged = true; // Set "true" to isDamaged boolean
+                    }
+                    returnBookControl.dischargeLoan(isDamaged); // Pass isDamaged to ReturnBookControl class by using their method "dischargeLoan"
+
+                // If state is in "COMPLETED" state then display a completion message
+                case COMPLETED:
+                    output("Return processing complete"); // Display a completion message of following text
+                    return; // Exit the while loop
+
+                // If state is not in all state above then show an error message
+                default:
+                    output("Unhandled state"); // Display error of following text
+                    throw new RuntimeException("ReturnBookUI : unhandled state :" + state); // Throw an exception error of following text
+            }
+        }
+    }
 	
     // Create "input" method which displays the text and takes an input from user. Then return the input as a string
     // Its takes "prompt" string to display the prompt and takes input from the user.
