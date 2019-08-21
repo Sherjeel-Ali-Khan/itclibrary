@@ -43,9 +43,9 @@ public class Book implements Serializable {
     }
 
     // Create getTitle method to get the tile of the book
-	public String getTitle() {
-		return TITLE;
-	}
+    public String getTitle() {
+        return title; // return string "tile" of the book
+    }
 
     // Create isAvailable method to check that the book is available or not, in the form of boolean.	
 	public boolean isAvailable() {
