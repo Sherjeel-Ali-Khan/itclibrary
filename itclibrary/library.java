@@ -125,7 +125,7 @@ public class library implements Serializable {
 
 	public member Add_mem(String lastName, String firstName, String email, int phoneNo) {		
 		member member = new member(lastName, firstName, email, phoneNo, NextMID());
-		members.put(member.GeT_ID(), member);		
+		members.put(member.getId(), member);		
 		return member;
 	}
 
@@ -157,14 +157,14 @@ public class library implements Serializable {
 
 	
 	public boolean MEMBER_CAN_BORROW(member member) {		
-		if (member.Number_Of_Current_Loans() == loanLimit ) 
+		if (member.getNumberOfCurrentLoans() == loanLimit ) 
 			return false;
 				
-		if (member.Fines_OwEd() >= maxFinesOwed) 
+		if (member.getFinesOwed() >= maxFinesOwed) 
 			return false;
 				
-		for (loan loan : member.GeT_LoAnS()) 
-			if (loan.OVer_Due()) 
+		for (loan loan : member.getLoans()) 
+			if (loan.isOverDue()) 
 				return false;
 			
 		return true;
@@ -172,16 +172,16 @@ public class library implements Serializable {
 
 	
 	public int Loans_Remaining_For_Member(member member) {		
-		return loanLimit - member.Number_Of_Current_Loans();
+		return loanLimit - member.getNumberOfCurrentLoans();
 	}
 
 	
 	public loan ISSUE_LAON(book book, member member) {
 		Date dueDate = Calendar.INSTANCE().Due_Date(loanPeriod);
 		loan loan = new loan(NextLID(), book, member, dueDate);
-		member.Take_Out_Loan(loan);
+		member.takeOutLoan(loan);
 		book.Borrow();
-		loans.put(loan.ID(), loan);
+		loans.put(loan.getId(), loan);
 		currentLoans.put(book.ID(), loan);
 		return loan;
 	}
@@ -196,8 +196,8 @@ public class library implements Serializable {
 
 	
 	public double CalculateOverDueFine(loan loan) {
-		if (loan.OVer_Due()) {
-			long daysOverDue = Calendar.INSTANCE().Get_Days_Difference(loan.Get_Due_Date());
+		if (loan.isOverDue()) {
+			long daysOverDue = Calendar.INSTANCE().Get_Days_Difference(loan.getDueDate());
 			double fine = daysOverDue * finePerDay;
 			return fine;
 		}
@@ -206,19 +206,19 @@ public class library implements Serializable {
 
 
 	public void Discharge_loan(loan currentLoan, boolean isDamaged) {
-		member member = currentLoan.Member();
-		book book  = currentLoan.Book();
+		member member = currentLoan.getMember();
+		book book  = currentLoan.getBook();
 		
 		double overDueFine = CalculateOverDueFine(currentLoan);
-		member.Add_Fine(overDueFine);	
+		member.addFine(overDueFine);	
 		
-		member.dIsChArGeLoAn(currentLoan);
+		member.dischargeLoan(currentLoan);
 		book.Return(isDamaged);
 		if (isDamaged) {
-			member.Add_Fine(damageFee);
+			member.addFine(damageFee);
 			damagedBooks.put(book.ID(), book);
 		}
-		currentLoan.DiScHaRgE();
+		currentLoan.getDischargeStatus();
 		currentLoans.remove(book.ID());
 	}
 
