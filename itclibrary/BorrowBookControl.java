@@ -15,7 +15,7 @@ public class BorrowBookControl {
 	private Book book; //Change class name and variable name (Orig:  book BOOK)
 
 
-	public BorrowBookControl() {
+	public BorrowBookControl() { // default constructor
 		this.library = library.INSTANCE(); // Change variable name to library (Orig: LIBRARY)
 		ctrlState = ControlState.INITIALISED; //Changed enum name (Orig: enum CONTROL_STATE)  (To:ctrlState; Orig:State;)
 	}
@@ -31,7 +31,7 @@ public class BorrowBookControl {
 	}
 
 
-	public void Swiped(int memberId) { // change parameter name ( To: memberId; Orig: MEMMER_ID;)
+	public void swiped(int memberId) { // change parameter name and method name ( To: memberId; Orig: MEMMER_ID; , To: swiped; Orig: Swiped;)
 		if (!ctrlState.equals(ControlState.READY)) //Change enum name (Orig: enum CONTROL_STATE) (To:ctrlState; Orig:State;)
 			throw new RuntimeException("BorrowBookControl: cannot call cardSwiped except in READY state");
 
@@ -50,7 +50,7 @@ public class BorrowBookControl {
 			borrowBookUi.Set_State(BorrowBookUi.UI_STATE.RESTRICTED); }} // Change variable name to borrowBookUi (Orig: UI) // Change class name to BorrowBookUi (Orig: BorrowBookUI)
 
 
-	public void Scanned(int bookId) {
+	public void scanned(int bookId) { //Change method name (To:scanned; Orig:Scanned;)
 		book = null; // Change variable name ( To: book; Orig: BOOK;)
 		if (!ctrlState.equals(ControlState.SCANNING)) { //Change enum name (Orig: enum CONTROL_STATE) (To:ctrlState; Orig:State;)
 			throw new RuntimeException("BorrowBookControl: cannot call bookScanned except in SCANNING state");
@@ -75,7 +75,7 @@ public class BorrowBookControl {
 	}
 
 
-	public void Complete() {
+	public void complete() { //Change method name (To:complete; Orig:Complete;)
 		if (pendingBookList.size() == 0) { // Change variable name ( To: pendingBookList; Orig: PENDING;)
 			cancel();
 		}
@@ -91,7 +91,7 @@ public class BorrowBookControl {
 	}
 
 
-	public void Commit_LOans() {
+	public void commitLoans() { //Change method name (To:commiLoans; Orig:Commit_LoOns;)
 		if (!ctrlState.equals(ControlState.FINALISING)) { //Change enum name (Orig: enum CONTROL_STATE) (To:ctrlState; Orig:State;)
 			throw new RuntimeException("BorrowBookControl: cannot call commitLoans except in FINALISING state");
 		}
