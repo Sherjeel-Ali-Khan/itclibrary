@@ -9,15 +9,13 @@ public class ReturnBookControl {
     private Library library;  // Create an object of Library class to use the functionality of Library
     private Loan currentLoan; // Create an object of Loan class to use the functionality of Loan
 
-
     // Create a constructor of ReturnBookControl
     // Referring library object to the singleton of Library class
     // Assign the state to controlState as "INITIALISED"
-	public ReturnBookControl() {
-		this.lIbRaRy = lIbRaRy.INSTANCE();
-		sTaTe = CONTROL_STATE.INITIALISED;
-	}
-	
+    public ReturnBookControl() {
+        this.library = Library.getInstance();   // Referring library object of ReturnBookControl to the singleton of Library class
+        controlState = ControlState.INITIALISED;// Assign controlState as "INITIALISED" state
+    }
 	
     // Create setUI method which sets user interface to the settings which is passing to the method
     // This method requires ReturnBookUI object to set user interface
