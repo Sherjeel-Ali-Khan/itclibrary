@@ -4,14 +4,15 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 // Implement Book class by Serializable in order to send data through network or other platform
 public class Book implements Serializable {
-	
-	private String TITLE;
-	private String AUTHOR;
-	private String CALLNO;
-	private int ID;
-	
-	private enum STATE { AVAILABLE, ON_LOAN, DAMAGED, RESERVED };
-	private STATE State;
+
+ // Private variables of the Book class
+    private String title;   // Create "title" string for saving the title of the book
+    private String author;  // Create "author" string for saving the author name of the book
+    private String callNo;  // Create "callNo" string for saving the phone number to contact author
+    private int id;         // Create "id" integer for saving the unique identity of the book
+
+    private enum State { AVAILABLE, ON_LOAN, DAMAGED, RESERVED }; //Create an enum "State" and define states as AVAILABLE, ON_LOAN, DAMAGED, and RESERVED.
+    private State state; // Create an instance of enum and name it as "State"
 	
 	
 	public book(String author, String title, String callNo, int id) {
