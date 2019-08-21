@@ -87,14 +87,13 @@ public class Book implements Serializable {
             throw new RuntimeException(String.format("Book: cannot Return while book is in state: %s", state)); // Throw an exception error of following text
         }
     }
-
-    // Create repairBook method to repair the book and set the state to "AVAILABLE"	
-	public void repairBook() {
-		if (State.equals(STATE.DAMAGED)) {
-			State = STATE.AVAILABLE;
-		}
-		else {
-			throw new RuntimeException(String.format("Book: cannot repair while book is in state: %s", State));
-		}
-	}
+    // Create repairBook method to repair the book and set the state to "AVAILABLE"
+    public void repairBook() {
+        // Check the book is DAMAGED then set state to "AVAILABLE"
+        if (state.equals(State.DAMAGED)) { // If the state of the Book is DAMAGED
+            state = State.AVAILABLE; // Set the state to "AVAILABLE"
+        } else {  // If the state of the Book is not DAMAGED then show the error
+            throw new RuntimeException(String.format("Book: cannot repair while book is in state: %s", state)); // Throw an exception error of following text
+        }
+    }
 }
