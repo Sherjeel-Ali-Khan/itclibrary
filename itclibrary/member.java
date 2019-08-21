@@ -31,7 +31,7 @@ public class member implements Serializable {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Member:  ").append(id).append("\n")
-		  .append("  Name:  ").append(lastName).append(", ").append(FN).append("\n")
+		  .append("  Name:  ").append(lastName).append(", ").append(firstName).append("\n")
 		  .append("  Email: ").append(email).append("\n")
 		  .append("  Phone: ").append(phoneNo)
 		  .append("\n")
@@ -45,29 +45,29 @@ public class member implements Serializable {
 	}
 
 	
-	public int GeT_ID() {
+	public int getId() { //Change the method name GeT_ID to getId
 		return id;
 	}
 
 	
-	public List<loan> GeT_LoAnS() {
+	public List<loan> getLoans() { //Change the method name GeT_LoAnS to getLoans
 		return new ArrayList<loan>(loans.values());
 	}
 
 	
-	public int Number_Of_Current_Loans() {
+	public int getNumberOfCurrentLoans() { //Change the method name Number_Of_Current_Loans to getNumberOfCurrentLoans
 		return loans.size();
 	}
 
 	
-	public double Fines_OwEd() {
+	public double getFinesOwed() { //Change the method name Fines_OwEd to getFinesOwed
 		return fines;
 	}
 
 	
-	public void Take_Out_Loan(loan loan) {
-		if (!loans.containsKey(loan.id())) {
-			loans.put(loan.id(), loan);
+	public void takeOutLoan(loan loan) { //Change the method name Take_Out_Loan to takeOutLoan
+		if (!loans.containsKey(loan.getId())) {
+			loans.put(loan.getId(), loan);
 		}
 		else {
 			throw new RuntimeException("Duplicate loan added to member");
@@ -75,21 +75,21 @@ public class member implements Serializable {
 	}
 
 	
-	public String Get_LastName() {
+	public String getLastName() { //Change the method name Get_LastName to getLastName
 		return lastName;
 	}
 
 	
-	public String Get_FirstName() {
+	public String getFirstName() { //Change the method name Get_FirstName to getFirstName
 		return firstName;
 	}
 
 
-	public void Add_Fine(double fine) {
+	public void addFine(double fine) { //Change the method name Add_Fine to addFine
 		fines += fine;
 	}
 	
-	public double Pay_Fine(double amount) { // change the variable name to amount
+	public double payFine(double amount) { // change the variable name to amount and Change the method name Pay_Fine to payFine
 		if (amount < 0) {
 			throw new RuntimeException("Member.payFine: amount must be positive");
 		}
@@ -105,9 +105,9 @@ public class member implements Serializable {
 	}
 
 
-	public void dIsChArGeLoAn(loan loan) { // change the variable name to loan
-		if (loans.containsKey(loan.id())) {
-			loans.remove(loan.id());
+	public void dischargeLoan(loan loan) { // change the variable name to loan and Change the method name dIsChArGeLoAn to dischargeLoan
+		if (loans.containsKey(loan.getId())) {
+			loans.remove(loan.getId());
 		}
 		else {
 			throw new RuntimeException("No such loan held by member");
