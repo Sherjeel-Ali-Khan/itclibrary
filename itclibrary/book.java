@@ -72,22 +72,21 @@ public class Book implements Serializable {
         }
     }
 
-
     // Create returnBook method to return the book to library and set the state to "DAMAGED" or "AVAILABLE" from "ON_LOAN" state
     // This method requires isDamaged boolean to check the book is damaged or not. This helps to change the state of the book
-	public void returnBook(boolean DAMAGED) {
-		if (State.equals(STATE.ON_LOAN)) {
-			if (DAMAGED) {
-				State = STATE.DAMAGED;
-			}
-			else {
-				State = STATE.AVAILABLE;
-			}
-		}
-		else {
-			throw new RuntimeException(String.format("Book: cannot Return while book is in state: %s", State));
-		}		
-	}
+    public void returnBook (boolean isDamaged) {
+        // Check the state of the book is on loan
+        if (state.equals(State.ON_LOAN)) { // If the state of the Book is ON_LOAN state
+            // Check the book is damaged or not then set the state to "DAMAGED" or "AVAILABLE" from "ON_LOAN" state
+            if (isDamaged) {    // If the book is damaged set the state to "DAMAGED"
+                state = State.DAMAGED; // Set the state to "DAMAGED"
+            } else {            // If the book is damaged set the state to "AVAILABLE"
+                state = State.AVAILABLE; // Set the state to "AVAILABLE"
+            }
+        } else { // If the state of the Book is not ON_LOAN state then show the error
+            throw new RuntimeException(String.format("Book: cannot Return while book is in state: %s", state)); // Throw an exception error of following text
+        }
+    }
 
     // Create repairBook method to repair the book and set the state to "AVAILABLE"	
 	public void repairBook() {
