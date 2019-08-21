@@ -30,40 +30,53 @@ public class ReturnBookControl {
         controlState = ControlState.READY; // Set the state of controlState to "READY" state
     }
 
-
     // Create bookScanned method which finds book in Library by using bookId. If the book is found, then display book, current loan and over dues.
     // Otherwise shows errors
     // This method requires bookId integer to find valid book
-	public void bookScanned(int Book_ID) {
-		if (!sTaTe.equals(CONTROL_STATE.READY)) {
-			throw new RuntimeException("ReturnBookControl: cannot call bookScanned except in READY state");
-		}	
-		book CUR_book = lIbRaRy.Book(Book_ID);
-		
-		if (CUR_book == null) {
-			Ui.display("Invalid Book Id");
-			return;
-		}
-		if (!CUR_book.On_loan()) {
-			Ui.display("Book has not been borrowed");
-			return;
-		}		
-		CurrENT_loan = lIbRaRy.LOAN_BY_BOOK_ID(Book_ID);	
-		double Over_Due_Fine = 0.0;
-		if (CurrENT_loan.OVer_Due()) {
-			Over_Due_Fine = lIbRaRy.CalculateOverDueFine(CurrENT_loan);
-		}
-		Ui.display("Inspecting");
-		Ui.display(CUR_book.toString());
-		Ui.display(CurrENT_loan.toString());
-		
-		if (CurrENT_loan.OVer_Due()) {
-			Ui.display(String.format("\nOverdue fine : $%.2f", Over_Due_Fine));
-		}
-		Ui.Set_State(ReturnBookUI.UI_STATE.INSPECTING);
-		sTaTe = CONTROL_STATE.INSPECTING;		
-	}
+    public void bookScanned(int bookId) {
+        // If controlState is not in the state of "READY" then throw an exception error of following text
+        if (!controlState.equals(ControlState.READY)) { // If controlState is not in the state of "READY" then follows the code in IF block
+            throw new RuntimeException("ReturnBookControl: cannot call bookScanned except in READY state");  // Throw an exception error of following text
+        }
+        Book currentBook = library.getBook(bookId); // Create a Book object "currentBook" and assign it to the Book object from Library class's method "getBook" by passing bookId to the method
 
+        // If getBook method of Library class return null as there is no book which reflects the bookId
+        // Then ReturnBookUI display "Invalid Book Id" message
+        // And Exit the bookScanned method
+        if (currentBook == null) { // If currentBook object is null
+            returnBookUI.display("Invalid Book Id"); // returnBookUI display "Invalid Book Id" message
+            return; // Exit the bookScanned method
+        }
+
+        // If currentBook is not on Loan
+        // Then ReturnBookUI display "Book has not been borrowed" message
+        // And Exit the bookScanned method
+        if (!currentBook.onLoan()) { // If currentBook is not on Loan
+            returnBookUI.display("Book has not been borrowed"); // returnBookUI display "Book has not been borrowed" message
+            return; // Exit the bookScanned method
+        }
+
+        currentLoan = library.getLoan(bookId); // Assign currentLoan to the Loan object from Library class's method "getLoan" by passing bookId to the method
+
+        double overDueFine = 0.0; // Initialize overDueFine and assign it to 0.0
+
+        // If currentLoan is over due then assign overDueFine to fine on over due by using the "calculateOverDueFine" method of Library class
+        if (currentLoan.isOverDue()) { // If currentLoan is over due then follows the code in IF block
+            overDueFine = library.calculateOverDueFine(currentLoan); // Assign overDueFine to fine on over due by using the "calculateOverDueFine" method of Library class
+        }
+
+        returnBookUI.display("Inspecting"); // returnBookUI display "Inspecting" message
+        returnBookUI.display(currentBook.toString()); // returnBookUI display currentBook message by using toString() method
+        returnBookUI.display(currentLoan.toString()); // returnBookUI display currentLoan message by using toString() method
+
+        // If currentLoan is over due then display over due fine by using "display" method of returnBookUI on User Interface
+        if (currentLoan.isOverDue()) {  // If currentLoan is over due then follows the code in IF block
+            returnBookUI.display(String.format("\nOverdue fine : $%.2f", overDueFine)); // Display over due fine
+        }
+
+        returnBookUI.setState(ReturnBookUI.UI_STATE.INSPECTING);  // Set the state of returnBookUI object to "INSPECTING" by calling their method "setState" and passing the static enum of ReturnBookUI
+        controlState = ControlState.INSPECTING;  // Set the state of controlState to "INSPECTING" state
+    }
 
     // Create scanningComplete method which changes the state of returnBookUI to "COMPLETED"
 	public void scanningComplete() {
