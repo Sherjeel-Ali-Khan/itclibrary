@@ -1,67 +1,67 @@
 public class FixBookControl {
 	
-	private FixBookUI ui;//change the local variable UI to ui
+	private FixBookUI ui;// change the variable name as ui
 	private enum CONTROL_STATE { INITIALISED, READY, FIXING };
-	private CONTROL_STATE state; //change the local variable state
+	private CONTROL_STATE state;// change the variable name as state
 	
-	private library LIB;
-	private book Cur_Book;
+	private library library;// change the variable name as library
+	private book currentBook;// change the variable name as currentBook
 
 
 	public FixBookControl() {
-		this.LIB = LIB.INSTANCE();
-		StAtE = CONTROL_STATE.INITIALISED;
+		this.library = library.INSTANCE();// change according to variable name library
+		state = CONTROL_STATE.INITIALISED;// change according to variable name state
 	}
 	
 	
-	public void Set_Ui(FixBookUI ui) {
-		if (!StAtE.equals(CONTROL_STATE.INITIALISED)) {
+	public void Set_Ui(FixBookUI ui1) {//change parameter name ui to ui1 for easyli identify with variable name
+		if (!state.equals(CONTROL_STATE.INITIALISED)) {// change according to variable name state
 			throw new RuntimeException("FixBookControl: cannot call setUI except in INITIALISED state");
 		}	
-		this.UI = ui;
-		ui.Set_State(FixBookUI.UI_STATE.READY);
-		StAtE = CONTROL_STATE.READY;		
+		this.ui = ui1;// change according to parameter and variable name ui1 and ui
+		ui1.Set_State(FixBookUI.UI_STATE.READY);// change according to parameter name ui1
+		state = CONTROL_STATE.READY;// change according to variable name state		
 	}
 
 
 	public void Book_scanned(int bookId) {
-		if (!StAtE.equals(CONTROL_STATE.READY)) {
+		if (!state.equals(CONTROL_STATE.READY)) {// change according to variable name state
 			throw new RuntimeException("FixBookControl: cannot call bookScanned except in READY state");
 		}	
-		Cur_Book = LIB.Book(bookId);
+		currentBook = library.Book(bookId);// change according to variable name library, currentBook
 		
-		if (Cur_Book == null) {
-			UI.display("Invalid bookId");
+		if (currentBook == null) {// change according to variable name currentBook
+			ui.display("Invalid bookId");// change according to variable name ui
 			return;
 		}
-		if (!Cur_Book.IS_Damaged()) {
-			UI.display("Book has not been damaged");
+		if (!currentBook.IS_Damaged()) {// change according to variable name currentBook
+			ui.display("Book has not been damaged");// change according to variable name ui
 			return;
 		}
-		UI.display(Cur_Book.toString());
-		UI.Set_State(FixBookUI.UI_STATE.FIXING);
-		StAtE = CONTROL_STATE.FIXING;		
+		ui.display(currentBook.toString());// change according to variable name ui, currentBook
+		ui.Set_State(FixBookUI.UI_STATE.FIXING);// change according to variable name ui
+		state = CONTROL_STATE.FIXING;// change according to variable name state		
 	}
 
 
 	public void FIX_Book(boolean MUST_fix) {
-		if (!StAtE.equals(CONTROL_STATE.FIXING)) {
+		if (!state.equals(CONTROL_STATE.FIXING)) {// change according to variable name state
 			throw new RuntimeException("FixBookControl: cannot call fixBook except in FIXING state");
 		}	
 		if (MUST_fix) {
-			LIB.Repair_BOOK(Cur_Book);
+			library.Repair_BOOK(currentBook);// change according to variable name library, currentBook
 		}
-		Cur_Book = null;
-		UI.Set_State(FixBookUI.UI_STATE.READY);
-		StAtE = CONTROL_STATE.READY;		
+		currentBook = null;// change according to variable name currentBook
+		ui.Set_State(FixBookUI.UI_STATE.READY);// change according to variable name ui
+		state = CONTROL_STATE.READY;// change according to variable name state		
 	}
 
 	
 	public void SCannING_COMplete() {
-		if (!StAtE.equals(CONTROL_STATE.READY)) {
+		if (!state.equals(CONTROL_STATE.READY)) {// change according to variable name state
 			throw new RuntimeException("FixBookControl: cannot call scanningComplete except in READY state");
 		}	
-		UI.Set_State(FixBookUI.UI_STATE.COMPLETED);		
+		ui.Set_State(FixBookUI.UI_STATE.COMPLETED);// change according to variable name ui		
 	}
 
 
