@@ -48,12 +48,12 @@ public class CalendarUtil {  //Change class name (To:CalendarUtil; Orig:Calendar
 		}
 	}
 
-	public synchronized Date Due_Date(int loanPeriod) {
+	public synchronized Date getDueDate(int loanPeriod) { //Change method name (To:getDueDate; Orig:Due_Date;)
 		Date NoW = Date();
 		calendarObj.add(java.util.Calendar.DATE, loanPeriod);  //Change variable name (To:calendarObj; Orig:CaLeNdAr;)
-		Date DuEdAtE = calendarObj.getTime(); //Change variable name (To:calendarObj; Orig:CaLeNdAr;)
+		Date dueDate = calendarObj.getTime(); //Change variable name (To:calendarObj; Orig:CaLeNdAr; , To:dueDate; Orig:DuEdAtE;)
 		calendarObj.setTime(NoW); //Change variable name (To:calendarObj; Orig:CaLeNdAr;)
-		return DuEdAtE;
+		return dueDate; //Change variable name (To:dueDate; Orig:DuEdAtE;)
 	}
 
 	public synchronized long Get_Days_Difference(Date targetDate) {
