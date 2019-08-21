@@ -183,10 +183,10 @@ public class Main {
 
 	private static void addBook() { // Change method name (To:addBook; Orig:ADD_BOOK;)
 
-		String A = input("Enter author: ");
-		String T  = input("Enter title: ");
-		String C = input("Enter call number: ");
-		book B = library.addBook(A, T, C); //Change variable name  To: library; Orig: LIB; ) Change method name (To:addBook; Orig:Add_book;)
+		String author = input("Enter author: ");  // Change variable name ( To: author; Orig: A;)
+		String title  = input("Enter title: ");  // Change variable name ( To: title; Orig: T;)
+		String callNumber = input("Enter call number: ");  // Change variable name ( To: callNumber; Orig: C;)
+		Book book = library.addBook(author, title, callNumber); //Change variable name  To: library; Orig: LIB; ) Change method name (To:addBook; Orig:Add_book;) Change parameters (To: (author, title, callNumber); Orig: (A, T, C); )
 		output("\n" + B + "\n");
 
 	}
@@ -194,11 +194,11 @@ public class Main {
 
 	private static void addMember() { // Change method name (To:addMember; Orig:ADD_MEMBER;)
 		try {
-			String LN = input("Enter last name: ");
-			String FN  = input("Enter first name: ");
-			String EM = input("Enter email: ");
-			int PN = Integer.valueOf(input("Enter phone number: ")).intValue();
-			Member M = library.addMember(LN, FN, EM, PN); //Change class name  (To: Member; Orig: member; )  Change variable name  (To: library; Orig: LIB; ) Change method name (To:addMember; Orig:Add_mem;)
+			String lastName = input("Enter last name: "); // Change variable name ( To: lastName; Orig: LN;)
+			String firstName = input("Enter first name: "); // Change variable name ( To: firstName; Orig: FN;)
+			String email = input("Enter email: "); // Change variable name ( To: email; Orig: EM;)
+			int phoneNo = Integer.valueOf(input("Enter phone number: ")).intValue(); // Change variable name ( To: phoneNo; Orig: PN;)
+			Member member = library.addMember(lastName, firstName, email, phoneNo); //Change class name  (To: Member; Orig: member; )  Change variable name  (To: library; Orig: LIB; , To:(lastName, firstName, email, phoneNo); Orig: (LN, FN, EM, PN); ) Change method name (To:addMember; Orig:Add_mem;)
 			output("\n" + M + "\n");
 
 		} catch (NumberFormatException e) {
