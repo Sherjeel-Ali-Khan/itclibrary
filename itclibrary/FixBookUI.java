@@ -3,22 +3,22 @@ import java.util.Scanner;
 
 public class FixBookUI {
 
-	public static enum UI_STATE { INITIALISED, READY, FIXING, COMPLETED };
+	public static enum UiState { INITIALISED, READY, FIXING, COMPLETED }; //change enum name as UiState
 
 	private FixBookControl control;// change the variable name as control
 	private Scanner input;
-	private UI_STATE state;// change the variable name as state
+	private UiState state;// change the variable name as state, enum name as UiState
 
 	
 	public FixBookUI(FixBookControl control1) {//change parameter name control to control1 for easyli identify with variable name
 		this.control = control1;// change according to parameter and variable name control1 and control
 		input = new Scanner(System.in);
-		state = UI_STATE.INITIALISED;// change according to variable name state
+		state = UiState.INITIALISED;// change according to variable name state ,enum name as UiState
 		control1.setUi(this);// change according to parameter name control1 , method name setUi
 	}
 
         //change method name as setState
-	public void setState(UI_STATE state1) {//change parameter name state to state11 for easyli identify with variable name
+	public void setState(UiState state1) {//change parameter name state to state11 for easyli identify with variable name ,enum name as UiState
 		this.state = state1;// change according to parameter and variable name state1 and state
 	}
 
