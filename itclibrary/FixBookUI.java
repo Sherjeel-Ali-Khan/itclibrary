@@ -14,53 +14,53 @@ public class FixBookUI {
 		this.control = control1;// change according to parameter and variable name control1 and control
 		input = new Scanner(System.in);
 		state = UI_STATE.INITIALISED;// change according to variable name state
-		control1.Set_Ui(this);// change according to parameter name control1
+		control1.setUi(this);// change according to parameter name control1 , method name setUi
 	}
 
-
-	public void Set_State(UI_STATE state1) {//change parameter name state to state11 for easyli identify with variable name
+        //change method name as setState
+	public void setState(UI_STATE state1) {//change parameter name state to state11 for easyli identify with variable name
 		this.state = state1;// change according to parameter and variable name state1 and state
 	}
 
 	
-	public void RuN() {
-		output("Fix Book Use Case UI\n");
+	public void isRun() {//change method name as isRun
+		setOutput("Fix Book Use Case UI\n");// change according to method name setOutput
 		
 		while (true) {
 			
 			switch (state) {// change according to variable name state
 			
 			case READY:
-				String Book_STR = input("Scan Book (<enter> completes): ");
+				String Book_STR = setInput("Scan Book (<enter> completes): ");// change according to method name setInput
 				if (Book_STR.length() == 0) {
-					control.SCannING_COMplete();// change according to variable name control
+					control.scanningComplete();// change according to variable name control, and method name scanningComplete
 				}
 				else {
 					try {
 						int Book_ID = Integer.valueOf(Book_STR).intValue();
-						control.Book_scanned(Book_ID);// change according to variable name control
+						control.bookScanned(Book_ID);// change according to variable name control, and method name bookScanned
 					}
 					catch (NumberFormatException e) {
-						output("Invalid bookId");
+						setOutput("Invalid bookId");// change according to method name setOutput
 					}
 				}
 				break;	
 				
 			case FIXING:
-				String AnS = input("Fix Book? (Y/N) : ");
+				String AnS = setInput("Fix Book? (Y/N) : ");// change according to method name setInput
 				boolean FiX = false;
 				if (AnS.toUpperCase().equals("Y")) {
 					FiX = true;
 				}
-				control.FIX_Book(FiX);// change according to variable name control
+				control.fixBook(FiX);// change according to variable name control, method name fixBook
 				break;
 								
 			case COMPLETED:
-				output("Fixing process complete");
+				setOutput("Fixing process complete");// change according to method name setOutput
 				return;
 			
 			default:
-				output("Unhandled state");
+				setOutput("Unhandled state");// change according to method name setOutput
 				throw new RuntimeException("FixBookUI : unhandled state :" + state);// change according to variable name state			
 			
 			}		
@@ -69,19 +69,19 @@ public class FixBookUI {
 	}
 
 	
-	private String input(String prompt) {
+	private String setInput(String prompt) {//change method name as setInput
 		System.out.print(prompt);
 		return input.nextLine();
 	}	
 		
 		
-	private void output(Object object) {
+	private void setOutput(Object object) {//change method name as setOutput
 		System.out.println(object);
 	}
 	
 
-	public void display(Object object) {
-		output(object);
+	public void isDisplay(Object object) {//change method name as isDisplay
+		setOutput(object); // change according to method name setOutput
 	}
 	
 	
