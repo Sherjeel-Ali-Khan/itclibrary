@@ -17,16 +17,18 @@ public class ReturnBookControl {
         controlState = ControlState.INITIALISED;// Assign controlState as "INITIALISED" state
     }
 	
+
     // Create setUI method which sets user interface to the settings which is passing to the method
     // This method requires ReturnBookUI object to set user interface
-	public void setUI(ReturnBookUI ui) {
-		if (!sTaTe.equals(CONTROL_STATE.INITIALISED)) {
-			throw new RuntimeException("ReturnBookControl: cannot call setUI except in INITIALISED state");
-		}	
-		this.Ui = ui;
-		ui.Set_State(ReturnBookUI.UI_STATE.READY);
-		sTaTe = CONTROL_STATE.READY;		
-	}
+    public void setUI(ReturnBookUI returnBookUI) {
+        // If controlState is not in the state of "INITIALISED" then throw an exception error of following text
+        if (!controlState.equals(ControlState.INITIALISED)) { // If controlState is not in the state of "INITIALISED" then follows the code in IF block
+            throw new RuntimeException("ReturnBookControl: cannot call setUI except in INITIALISED state"); // Throw an exception error of following text
+        }
+        this.returnBookUI = returnBookUI; // Referring library object of ReturnBookControl to the ReturnBookControl provided from the method
+        returnBookUI.setState(ReturnBookUI.UI_STATE.READY);  // Set the state of returnBookUI object to "READY" by calling their method "setState" and passing the static enum of ReturnBookUI
+        controlState = ControlState.READY; // Set the state of controlState to "READY" state
+    }
 
 
     // Create bookScanned method which finds book in Library by using bookId. If the book is found, then display book, current loan and over dues.
