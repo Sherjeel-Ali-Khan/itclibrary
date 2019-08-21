@@ -56,11 +56,11 @@ public class CalendarUtil {  //Change class name (To:CalendarUtil; Orig:Calendar
 		return dueDate; //Change variable name (To:dueDate; Orig:DuEdAtE;)
 	}
 
-	public synchronized long Get_Days_Difference(Date targetDate) {
+	public synchronized long getDaysDifference(Date targetDate) { //Change method name (To:getDaysDifference; Orig:Get_Days_Difference;)
 
-		long Diff_Millis = Date().getTime() - targetDate.getTime();
-	    long Diff_Days = TimeUnit.DAYS.convert(Diff_Millis, TimeUnit.MILLISECONDS);
-	    return Diff_Days;
+		long diffMillis = Date().getTime() - targetDate.getTime();  //Change variable name (To:diffMillis; Orig:Diff_Millis;)
+	    long diffDays = TimeUnit.DAYS.convert(diffMillis, TimeUnit.MILLISECONDS);  //Change variable name (To:diffDays; Orig:Diff_Days;)
+	    return diffDays;  //Change variable name (To:diffDays; Orig:Diff_Millis;)
 	}
 
 }
