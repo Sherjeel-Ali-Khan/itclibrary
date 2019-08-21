@@ -11,7 +11,7 @@ public class Main {
 	private static SimpleDateFormat smplDateFmrt; // Change variable name ( To: smplDateFmrt; Orig: SDF;)
 
 
-	private static String Get_menu() {
+	private static String getMenu() { // Change method name (To:getMenu; Orig:Get_menu;)
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("\nLibrary Main Menu\n\n")
@@ -40,23 +40,23 @@ public class Main {
 	public static void main(String[] args) {
 		try {
 			scannerInput = new Scanner(System.in); // Change variable name ( To: scannerInput; Orig: IN;)
-			this.library = Library.INSTANCE(); //Change class name and variable name ( To: Library; Orig: library;)
-			this.calandar = Calendar.INSTANCE(); // Change variable name ( To: calandar; Orig: CAL;)
+			this.library = Library.getInstance(); //Change class name and variable name ( To: Library; Orig: library;) Change method name (To:getInstance; Orig:INSTANCE;)
+			this.calandar = Calendar.getInstance(); // Change variable name ( To: calandar; Orig: CAL;) Change method name (To:getInstance; Orig:INSTANCE;)
 			smplDateFmrt = new SimpleDateFormat("dd/MM/yyyy"); // Change variable name ( To: smplDateFmrt; Orig: SDF;)
 
-			for (Member m : this.library.MEMBERS()) { //Change class name ( To: Member; Orig: member; ) Change variable name  To: library; Orig: LIB; )
+			for (Member m : this.library.getMembers()) { //Change class name ( To: Member; Orig: member; ) Change variable name  To: library; Orig: LIB; ) Change method name (To:getMembers; Orig:MEMBERS;)
 				output(m);
 			}
 			output(" ");
-			for (Book b : library.BOOKS()) {  //Change class name ( To: Book; Orig: book; )  Change variable name  To: library; Orig: LIB; )
+			for (Book b : library.getBooks()) {  //Change class name ( To: Book; Orig: book; )  Change variable name  To: library; Orig: LIB; ) Change method name (To:getBooks; Orig:BOOKS;)
 				output(b);
 			}
 
-			menu = Get_menu(); // Change variable name ( To: menu; Orig: MENU;)
+			menu = getMenu(); // Change variable name ( To: menu; Orig: MENU;)
 
-			boolean e = false;
+			boolean condition = false; // Change variable name ( To: menu; Orig: MENU;)
 
-			while (!e) {
+			while (!condition) { // Change variable name ( To: condition; Orig: e;)
 
 				output("\n" + smplDateFmrt.format(calandar.Date())); // Change variable name ( To: calandar; Orig: CAL;) ( To: smplDateFmrt; Orig: SDF;)
 				String c = input(menu); // Change variable name ( To: menu; Orig: MENU;)
@@ -104,7 +104,7 @@ public class Main {
 					break;
 
 				case "Q":
-					e = true;
+					condition = true;
 					break;
 
 				default:
@@ -127,7 +127,7 @@ public class Main {
 
 	private static void CURRENT_LOANS() {
 		output("");
-		for (loan loan : library.CurrentLoans()) { //Change variable name  To: library; Orig: LIB; )
+		for (loan loan : library.currentLoans()) { //Change variable name  To: library; Orig: LIB; ) Change method name (To:currentLoans; Orig:CurrentLoans;)
 			output(loan + "\n");
 		}
 	}
@@ -136,16 +136,16 @@ public class Main {
 
 	private static void BOOKS() {
 		output("");
-		for (book book : library.BOOKS()) { //Change variable name  To: library; Orig: LIB; )
+		for (book book : library.getBooks()) { //Change variable name  To: library; Orig: LIB; ) Change method name (To:getBooks; Orig:BOOKS;)
 			output(book + "\n");
 		}
 	}
 
 
 
-	private static void MEMBERS() {
+	private static void MEMBERS()) {
 		output("");
-		for (member member : library.MEMBERS()) { //Change variable name  To: library; Orig: LIB; )
+		for (member member : library.getMembers()) { //Change variable name  To: library; Orig: LIB; ) Change method name (To:getMembers; Orig:MEMBERS;)
 			output(member + "\n");
 		}
 	}
@@ -153,17 +153,18 @@ public class Main {
 
 
 	private static void BORROW_BOOK() {
-		new BorrowBookUI(new BorrowBookControl()).run();
+		new BorrowBookUi(new BorrowBookControl()).run();  //Change class name (To:BorrowBookUi; Orig:BorrowBookUI;)
 	}
 
 
 	private static void RETURN_BOOK() {
-		new ReturnBookUI(new ReturnBookControl()).RuN();
+		new ReturnBookUi(new ReturnBookControl()).RuN(); //Change class name (To:ReturnBookUi; Orig:ReturnBookUI;)
 	}
 
 
 	private static void FIX_BOOKS() {
-		new FixBookUI(new FixBookControl()).RuN();
+		new FixBookiI(new FixBookControl()).RuN(); //Change class name (To:FixBookUi; Orig:FixBookUI;)
+
 	}
 
 
@@ -185,7 +186,7 @@ public class Main {
 		String A = input("Enter author: ");
 		String T  = input("Enter title: ");
 		String C = input("Enter call number: ");
-		book B = library.Add_book(A, T, C); //Change variable name  To: library; Orig: LIB; )
+		book B = library.addBook(A, T, C); //Change variable name  To: library; Orig: LIB; ) Change method name (To:addBook; Orig:Add_book;)
 		output("\n" + B + "\n");
 
 	}
@@ -197,7 +198,7 @@ public class Main {
 			String FN  = input("Enter first name: ");
 			String EM = input("Enter email: ");
 			int PN = Integer.valueOf(input("Enter phone number: ")).intValue();
-			Member M = library.Add_mem(LN, FN, EM, PN); //Change class name  (To: Member; Orig: member; )  Change variable name  (To: library; Orig: LIB; )
+			Member M = library.addMember(LN, FN, EM, PN); //Change class name  (To: Member; Orig: member; )  Change variable name  (To: library; Orig: LIB; ) Change method name (To:addMember; Orig:Add_mem;)
 			output("\n" + M + "\n");
 
 		} catch (NumberFormatException e) {
