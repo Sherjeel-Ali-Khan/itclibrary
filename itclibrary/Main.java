@@ -3,17 +3,17 @@ import java.util.Scanner;
 
 
 public class Main {
-	
-	private static Scanner IN;
-	private static library LIB;
-	private static String MENU;
-	private static Calendar CAL;
-	private static SimpleDateFormat SDF;
-	
-	
+
+	private static Scanner scannerInput; // Change variable name ( To: scannerInput; Orig: IN;)
+	private static Library library; //Change class name and variable name ( To: Library; Orig: library;)
+	private static String menu; // Change variable name ( To: menu; Orig: MENU;)
+	private static Calendar calandar; // Change variable name ( To: calandar; Orig: CAL;)
+	private static SimpleDateFormat smplDateFmrt; // Change variable name ( To: smplDateFmrt; Orig: SDF;)
+
+
 	private static String Get_menu() {
 		StringBuilder sb = new StringBuilder();
-		
+
 		sb.append("\nLibrary Main Menu\n\n")
 		  .append("  M  : add member\n")
 		  .append("  LM : list members\n")
@@ -32,148 +32,148 @@ public class Main {
 		  .append("  Q  : quit\n")
 		  .append("\n")
 		  .append("Choice : ");
-		  
+
 		return sb.toString();
 	}
 
 
-	public static void main(String[] args) {		
-		try {			
-			IN = new Scanner(System.in);
-			LIB = library.INSTANCE();
-			CAL = Calendar.INSTANCE();
-			SDF = new SimpleDateFormat("dd/MM/yyyy");
-	
-			for (member m : LIB.MEMBERS()) {
+	public static void main(String[] args) {
+		try {
+			scannerInput = new Scanner(System.in); // Change variable name ( To: scannerInput; Orig: IN;)
+			this.library = Library.INSTANCE(); //Change class name and variable name ( To: Library; Orig: library;)
+			this.calandar = Calendar.INSTANCE(); // Change variable name ( To: calandar; Orig: CAL;)
+			smplDateFmrt = new SimpleDateFormat("dd/MM/yyyy"); // Change variable name ( To: smplDateFmrt; Orig: SDF;)
+
+			for (Member m : this.library.MEMBERS()) { //Change class name ( To: Member; Orig: member; ) Change variable name  To: library; Orig: LIB; )
 				output(m);
 			}
 			output(" ");
-			for (book b : LIB.BOOKS()) {
+			for (Book b : library.BOOKS()) {  //Change class name ( To: Book; Orig: book; )  Change variable name  To: library; Orig: LIB; )
 				output(b);
 			}
-						
-			MENU = Get_menu();
-			
+
+			menu = Get_menu(); // Change variable name ( To: menu; Orig: MENU;)
+
 			boolean e = false;
-			
+
 			while (!e) {
-				
-				output("\n" + SDF.format(CAL.Date()));
-				String c = input(MENU);
-				
+
+				output("\n" + smplDateFmrt.format(calandar.Date())); // Change variable name ( To: calandar; Orig: CAL;) ( To: smplDateFmrt; Orig: SDF;)
+				String c = input(menu); // Change variable name ( To: menu; Orig: MENU;)
+
 				switch (c.toUpperCase()) {
-				
-				case "M": 
+
+				case "M":
 					ADD_MEMBER();
 					break;
-					
-				case "LM": 
+
+				case "LM":
 					MEMBERS();
 					break;
-					
-				case "B": 
+
+				case "B":
 					ADD_BOOK();
 					break;
-					
-				case "LB": 
+
+				case "LB":
 					BOOKS();
 					break;
-					
-				case "FB": 
+
+				case "FB":
 					FIX_BOOKS();
 					break;
-					
-				case "L": 
+
+				case "L":
 					BORROW_BOOK();
 					break;
-					
-				case "R": 
+
+				case "R":
 					RETURN_BOOK();
 					break;
-					
-				case "LL": 
+
+				case "LL":
 					CURRENT_LOANS();
 					break;
-					
-				case "P": 
+
+				case "P":
 					FINES();
 					break;
-					
-				case "T": 
+
+				case "T":
 					INCREMENT_DATE();
 					break;
-					
-				case "Q": 
+
+				case "Q":
 					e = true;
 					break;
-					
-				default: 
+
+				default:
 					output("\nInvalid option\n");
 					break;
 				}
-				
-				library.SAVE();
-			}			
+
+				Library.SAVE(); //Change class name ( To: Library; Orig: library;)
+			}
 		} catch (RuntimeException e) {
 			output(e);
-		}		
+		}
 		output("\nEnded\n");
-	}	
+	}
 
-		private static void FINES() {
-		new PayFineUI(new PayFineControl()).RuN();		
+	private static void FINES() {
+		new PayFineUI(new PayFineControl()).RuN();
 	}
 
 
 	private static void CURRENT_LOANS() {
 		output("");
-		for (loan loan : LIB.CurrentLoans()) {
+		for (loan loan : library.CurrentLoans()) { //Change variable name  To: library; Orig: LIB; )
 			output(loan + "\n");
-		}		
+		}
 	}
 
 
 
 	private static void BOOKS() {
 		output("");
-		for (book book : LIB.BOOKS()) {
+		for (book book : library.BOOKS()) { //Change variable name  To: library; Orig: LIB; )
 			output(book + "\n");
-		}		
+		}
 	}
 
 
 
 	private static void MEMBERS() {
 		output("");
-		for (member member : LIB.MEMBERS()) {
+		for (member member : library.MEMBERS()) { //Change variable name  To: library; Orig: LIB; )
 			output(member + "\n");
-		}		
+		}
 	}
 
 
 
 	private static void BORROW_BOOK() {
-		new BorrowBookUI(new BorrowBookControl()).run();		
+		new BorrowBookUI(new BorrowBookControl()).run();
 	}
 
 
 	private static void RETURN_BOOK() {
-		new ReturnBookUI(new ReturnBookControl()).RuN();		
+		new ReturnBookUI(new ReturnBookControl()).RuN();
 	}
 
 
 	private static void FIX_BOOKS() {
-		new FixBookUI(new FixBookControl()).RuN();		
+		new FixBookUI(new FixBookControl()).RuN();
 	}
 
 
 	private static void INCREMENT_DATE() {
 		try {
 			int days = Integer.valueOf(input("Enter number of days: ")).intValue();
-			CAL.incrementDate(days);
-			LIB.checkCurrentLoans();
-			output(SDF.format(CAL.Date()));
-			
+			calandar.incrementDate(days); // Change variable name ( To: calandar; Orig: CAL;)
+			library.checkCurrentLoans(); //Change variable name  To: library; Orig: LIB; )
+			output(smplDateFmrt.format(calandar.Date())); // Change variable name ( To: calandar; Orig: CAL;) ( To: smplDateFmrt; Orig: SDF;)
+
 		} catch (NumberFormatException e) {
 			 output("\nInvalid number of days\n");
 		}
@@ -181,42 +181,42 @@ public class Main {
 
 
 	private static void ADD_BOOK() {
-		
+
 		String A = input("Enter author: ");
 		String T  = input("Enter title: ");
 		String C = input("Enter call number: ");
-		book B = LIB.Add_book(A, T, C);
+		book B = library.Add_book(A, T, C); //Change variable name  To: library; Orig: LIB; )
 		output("\n" + B + "\n");
-		
+
 	}
 
-	
+
 	private static void ADD_MEMBER() {
 		try {
 			String LN = input("Enter last name: ");
 			String FN  = input("Enter first name: ");
 			String EM = input("Enter email: ");
 			int PN = Integer.valueOf(input("Enter phone number: ")).intValue();
-			member M = LIB.Add_mem(LN, FN, EM, PN);
+			Member M = library.Add_mem(LN, FN, EM, PN); //Change class name  (To: Member; Orig: member; )  Change variable name  (To: library; Orig: LIB; )
 			output("\n" + M + "\n");
-			
+
 		} catch (NumberFormatException e) {
 			 output("\nInvalid phone number\n");
 		}
-		
+
 	}
 
 
 	private static String input(String prompt) {
 		System.out.print(prompt);
-		return IN.nextLine();
+		return scannerInput.nextLine(); // Change variable name ( To: scannerInput; Orig: IN;)
 	}
-	
-	
-	
+
+
+
 	private static void output(Object object) {
 		System.out.println(object);
 	}
 
-	
+
 }
