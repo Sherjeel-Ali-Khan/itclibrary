@@ -1,3 +1,4 @@
+// Initiate to fix "ReturnBookControl.java" file
 public class ReturnBookControl {
 
 	private ReturnBookUI Ui;
