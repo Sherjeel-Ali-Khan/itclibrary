@@ -68,8 +68,7 @@ public class Member implements Serializable {
 	public void takeOutLoan(Loan loan) { //Change the method name Take_Out_Loan to takeOutLoan
 		if (!loans.containsKey(loan.getId())) {
 			loans.put(loan.getId(), loan);
-		}
-		else {
+		}else {
 			throw new RuntimeException("Duplicate loan added to member");
 		}		
 	}
@@ -97,8 +96,7 @@ public class Member implements Serializable {
 		if (amount > fines) {
 			change = amount - fines;
 			fines = 0;
-		}
-		else {
+		}else {
 			fines -= amount;
 		}
 		return change;
@@ -108,8 +106,7 @@ public class Member implements Serializable {
 	public void dischargeLoan(Loan loan) { // change the variable name to loan and Change the method name dIsChArGeLoAn to dischargeLoan
 		if (loans.containsKey(loan.getId())) {
 			loans.remove(loan.getId());
-		}
-		else {
+		}else {
 			throw new RuntimeException("No such loan held by member");
 		}		
 	}
