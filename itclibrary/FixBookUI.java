@@ -21,39 +21,38 @@ public class FixBookUI {
 		setOutput("Fix Book Use Case UI\n");// change according to method name setOutput
 		
 		while (true) {	
-            switch (state) {// change according to variable name state
-			
+			switch (state) {// change according to variable name state
 				case READY:
-                    String Book_STR = setInput("Scan Book (<enter> completes): ");// change according to method name setInput
-                    if (Book_STR.length() == 0) {
+					String bookString = setInput("Scan Book (<enter> completes): ");// change according to method name setInput, variable name bookString
+					if (bookString.length() == 0) {// change according to variable name bookString
 						control.scanningComplete();// change according to variable name control, and method name scanningComplete
-                    } else {
-                        try {
-                            int Book_ID = Integer.valueOf(Book_STR).intValue();
-                            control.bookScanned(Book_ID);// change according to variable name control, and method name bookScanned
+					} else {
+						try {
+							int bookId= Integer.valueOf(bookString).intValue();// change according to variable name bookString, bookId
+							control.bookScanned(bookId);// change according to variable name control,bookId and method name bookScanned
 						} catch (NumberFormatException e) {
-                            setOutput("Invalid bookId");// change according to method name setOutput
+									setOutput("Invalid bookId");// change according to method name setOutput
 						}
-                    }
-                    break;		
+					}
+					break;		
 				case FIXING:
-                    String AnS = setInput("Fix Book? (Y/N) : ");// change according to method name setInput
-                    boolean FiX = false;
-                    if (AnS.toUpperCase().equals("Y")) {
-						FiX = true;
-                    }
-                    control.fixBook(FiX);// change according to variable name control, method name fixBook
-                    break;
-								
+					String answer = setInput("Fix Book? (Y/N) : ");// change according to method name setInput, variable name answer
+					boolean fixAnswer = false;// change variable name as fixAnswer
+					if (answer.toUpperCase().equals("Y")) {// change according to variable name answer
+						fixAnswer = true;// change according to variable name fixAnswer
+					}
+					control.fixBook(fixAnswer);// change according to variable name control,fixAnswer method name fixBook
+					break;
+										
 				case COMPLETED:
-                    setOutput("Fixing process complete");// change according to method name setOutput
-                    return;
-			
+					setOutput("Fixing process complete");// change according to method name setOutput
+					return;
+					
 				default:
-                    setOutput("Unhandled state");// change according to method name setOutput
-                    throw new RuntimeException("FixBookUI : unhandled state :" + state);// change according to variable name state			
-			
-            }		
+					setOutput("Unhandled state");// change according to method name setOutput
+					throw new RuntimeException("FixBookUI : unhandled state :" + state);// change according to variable name state			
+					
+			}		
 		}
 		
     }
@@ -69,6 +68,5 @@ public class FixBookUI {
 
     public void isDisplay(Object object) {//change method name as isDisplay
 		setOutput(object); // change according to method name setOutput
-    }
-    
+    } 
 }
