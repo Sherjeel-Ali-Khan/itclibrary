@@ -2,17 +2,18 @@ import java.io.Serializable;
 
 // Initiate to fix "book.java" file
 @SuppressWarnings("serial")
+
 // Implement Book class by Serializable in order to send data through network or other platform
 public class Book implements Serializable {
 
- // Private variables of the Book class
+    // Private variables of the Book class
     private String title;   // Create "title" string for saving the title of the book
     private String author;  // Create "author" string for saving the author name of the book
     private String callNo;  // Create "callNo" string for saving the phone number to contact author
     private int id;         // Create "id" integer for saving the unique identity of the book
 
     private enum State { AVAILABLE, ON_LOAN, DAMAGED, RESERVED }; //Create an enum "State" and define states as AVAILABLE, ON_LOAN, DAMAGED, and RESERVED.
-    private State state; // Create an instance of enum and name it as "State"   
+    private State state; // Create an instance of enum and name it as "State"
 
     // Create a constructor of Book class and set all the private
     // This constructor enforces to set all private variables when the object of this class is created.
@@ -36,7 +37,7 @@ public class Book implements Serializable {
 
         return sb.toString(); // return StringBuilder "sb" as a string
     }
-
+    
     // Create getId method to get unique identity of the book
     public Integer getId() {
         return id; // return integer "id" of the book
@@ -87,6 +88,7 @@ public class Book implements Serializable {
             throw new RuntimeException(String.format("Book: cannot Return while book is in state: %s", state)); // Throw an exception error of following text
         }
     }
+
     // Create repairBook method to repair the book and set the state to "AVAILABLE"
     public void repairBook() {
         // Check the book is DAMAGED then set state to "AVAILABLE"
@@ -97,3 +99,4 @@ public class Book implements Serializable {
         }
     }
 }
+// Finalize "book.java" file
