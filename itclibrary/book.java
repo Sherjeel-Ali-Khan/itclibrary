@@ -14,7 +14,9 @@ public class Book implements Serializable {
     private enum State { AVAILABLE, ON_LOAN, DAMAGED, RESERVED }; //Create an enum "State" and define states as AVAILABLE, ON_LOAN, DAMAGED, and RESERVED.
     private State state; // Create an instance of enum and name it as "State"
 	
-	
+    // Create a constructor of Book class and set all the private
+    // This constructor enforces to set all private variables when the object of this class is created.
+    // It requires unique identity(id), author name(author), title of the book(title), and phone number to contact author(callNo).	
 	public Book(String author, String title, String callNo, int id) {
 		this.AUTHOR = author;
 		this.TITLE = title;
@@ -22,7 +24,8 @@ public class Book implements Serializable {
 		this.ID = id;
 		this.State = STATE.AVAILABLE;
 	}
-	
+
+    // Create a method "toString" which combine all the information of the Book class and return as a string.	
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Book: ").append(ID).append("\n")
@@ -34,31 +37,32 @@ public class Book implements Serializable {
 		return sb.toString();
 	}
 
+    // Create getId method to get unique identity of the book
 	public Integer getId() {
 		return ID;
 	}
 
+    // Create getTitle method to get the tile of the book
 	public String getTitle() {
 		return TITLE;
 	}
 
-
-	
+    // Create isAvailable method to check that the book is available or not, in the form of boolean.	
 	public boolean isAvailable() {
 		return State == STATE.AVAILABLE;
 	}
 
-	
+    // Create isOnLoan method to check that the book is on loan or not, in the form of boolean.	
 	public boolean isOnLoan() {
 		return State == STATE.ON_LOAN;
 	}
 
-	
+    // Create isDamaged method to check that the book is damaged or not, in the form of boolean.	
 	public boolean isDamaged() {
 		return State == STATE.DAMAGED;
 	}
 
-	
+    // Create borrowBook method to borrow the book from library and set the state to "ON_LOAN"	
 	public void borrowBook() {
 		if (State.equals(STATE.AVAILABLE)) {
 			State = STATE.ON_LOAN;
@@ -69,7 +73,8 @@ public class Book implements Serializable {
 		
 	}
 
-
+    // Create returnBook method to return the book to library and set the state to "DAMAGED" or "AVAILABLE" from "ON_LOAN" state
+    // This method requires isDamaged boolean to check the book is damaged or not. This helps to change the state of the book
 	public void returnBook(boolean DAMAGED) {
 		if (State.equals(STATE.ON_LOAN)) {
 			if (DAMAGED) {
@@ -84,7 +89,7 @@ public class Book implements Serializable {
 		}		
 	}
 
-	
+    // Create repairBook method to repair the book and set the state to "AVAILABLE"	
 	public void repairBook() {
 		if (State.equals(STATE.DAMAGED)) {
 			State = STATE.AVAILABLE;
@@ -93,6 +98,4 @@ public class Book implements Serializable {
 			throw new RuntimeException(String.format("Book: cannot repair while book is in state: %s", State));
 		}
 	}
-
-
 }
