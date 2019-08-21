@@ -64,43 +64,43 @@ public class Main {
 				switch (c.toUpperCase()) {
 
 				case "M":
-					ADD_MEMBER();
+					addMember(); // Change method name (To:addMember; Orig:ADD_MEMBER;)
 					break;
 
 				case "LM":
-					MEMBERS();
+					getMembers(); // Change method name (To:getMembers; Orig:MEMBERS;)
 					break;
 
 				case "B":
-					ADD_BOOK();
+					addBook(); // Change method name (To:addBook; Orig:ADD_BOOK;)
 					break;
 
 				case "LB":
-					BOOKS();
+					getBooks(); // Change method name (To:getBooks; Orig:BOOKS;)
 					break;
 
 				case "FB":
-					FIX_BOOKS();
+					fixBooks(); // Change method name (To:fixBooks; Orig:FIX_BOOKS;)
 					break;
 
 				case "L":
-					BORROW_BOOK();
+					borrowBook(); // Change method name (To:borrowBook; Orig:BORROW_BOOK;)
 					break;
 
 				case "R":
-					RETURN_BOOK();
+					ReturnBook(); // Change method name (To:ReturnBook; Orig:RETURN_BOOK;)
 					break;
 
 				case "LL":
-					CURRENT_LOANS();
+					currentLoans(); // Change method name (To:currentLoans; Orig:CURRENT_LOANS;)
 					break;
 
 				case "P":
-					FINES();
+					payFine(); // Change method name (To:payFine; Orig:FINES;)
 					break;
 
 				case "T":
-					INCREMENT_DATE();
+					incrementDate(); // Change method name (To:incrementDate; Orig:INCREMENT_DATE;)
 					break;
 
 				case "Q":
@@ -120,12 +120,12 @@ public class Main {
 		output("\nEnded\n");
 	}
 
-	private static void FINES() {
+	private static void payFine() { // Change method name (To:payFine; Orig:FINES;)
 		new PayFineUI(new PayFineControl()).RuN();
 	}
 
 
-	private static void CURRENT_LOANS() {
+	private static void currentLoans() { // Change method name (To:currentLoans; Orig:CURRENT_LOANS;)
 		output("");
 		for (loan loan : library.currentLoans()) { //Change variable name  To: library; Orig: LIB; ) Change method name (To:currentLoans; Orig:CurrentLoans;)
 			output(loan + "\n");
@@ -134,7 +134,7 @@ public class Main {
 
 
 
-	private static void BOOKS() {
+	private static void getBooks() {  // Change method name (To:getBooks; Orig:BOOKS;)
 		output("");
 		for (book book : library.getBooks()) { //Change variable name  To: library; Orig: LIB; ) Change method name (To:getBooks; Orig:BOOKS;)
 			output(book + "\n");
@@ -143,7 +143,7 @@ public class Main {
 
 
 
-	private static void MEMBERS()) {
+	private static void getMembers()) { // Change method name (To:getMembers; Orig:MEMBERS;)
 		output("");
 		for (member member : library.getMembers()) { //Change variable name  To: library; Orig: LIB; ) Change method name (To:getMembers; Orig:MEMBERS;)
 			output(member + "\n");
@@ -152,23 +152,23 @@ public class Main {
 
 
 
-	private static void BORROW_BOOK() {
+	private static void borrowBook() {// Change method name (To:borrowBook; Orig:BORROW_BOOK;)
 		new BorrowBookUi(new BorrowBookControl()).run();  //Change class name (To:BorrowBookUi; Orig:BorrowBookUI;)
 	}
 
 
-	private static void RETURN_BOOK() {
+	private static void ReturnBook() { // Change method name (To:ReturnBook; Orig:RETURN_BOOK;)
 		new ReturnBookUi(new ReturnBookControl()).RuN(); //Change class name (To:ReturnBookUi; Orig:ReturnBookUI;)
 	}
 
 
-	private static void FIX_BOOKS() {
+	private static void fixBooks() { // Change method name (To:fixBooks; Orig:FIX_BOOKS;)
 		new FixBookiI(new FixBookControl()).RuN(); //Change class name (To:FixBookUi; Orig:FixBookUI;)
 
 	}
 
 
-	private static void INCREMENT_DATE() {
+	private static void incrementDate() { // Change method name (To:incrementDate; Orig:INCREMENT_DATE;)
 		try {
 			int days = Integer.valueOf(input("Enter number of days: ")).intValue();
 			calandar.incrementDate(days); // Change variable name ( To: calandar; Orig: CAL;)
@@ -181,7 +181,7 @@ public class Main {
 	}
 
 
-	private static void ADD_BOOK() {
+	private static void addBook() { // Change method name (To:addBook; Orig:ADD_BOOK;)
 
 		String A = input("Enter author: ");
 		String T  = input("Enter title: ");
@@ -192,7 +192,7 @@ public class Main {
 	}
 
 
-	private static void ADD_MEMBER() {
+	private static void addMember() { // Change method name (To:addMember; Orig:ADD_MEMBER;)
 		try {
 			String LN = input("Enter last name: ");
 			String FN  = input("Enter first name: ");
