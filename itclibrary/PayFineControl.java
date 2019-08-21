@@ -9,7 +9,7 @@ public class PayFineControl {
 
 
 	public PayFineControl() {
-		this.library = library.INSTANCE();// change according to variable name library 
+		this.library = library.isInstance();// change according to variable name library and method name isInstance
 		state = ControlState.INITIALISED;// change according to variable name state ,enum name as ControlState
 	}
 	
@@ -46,18 +46,18 @@ public class PayFineControl {
 	}
 
 
-	public double payFine(double AmOuNt) {// change method neme as payFine
+	public double payFine(double amount) {// change method neme as payFine, parameter as amount
 		if (!state.equals(ControlState.PAYING)) {// change according to variable name state,enum name as ControlState 
 			throw new RuntimeException("PayFineControl: cannot call payFine except in PAYING state");
 		}	
-		double ChAnGe = member.Pay_Fine(AmOuNt);// change according to variable name member 
-		if (ChAnGe > 0) {
-			ui.isDisplay(String.format("Change: $%.2f", ChAnGe));// change according to variable name ui and method name isDisplay
+		double change = member.Pay_Fine(amount);// change according to variable name member ,change, amount
+		if (change > 0) {//change variable name as change
+			ui.isDisplay(String.format("Change: $%.2f", change));// change according to variable name ui,change and method name isDisplay
 		}
 		ui.isDisplay(member.toString());// change according to variable name ui , member and method name display
 		ui.setState(PayFineUI.UiState.COMPLETED);// change according to variable name ui and method name setState ,enum name as UiState
 		state = ControlState.COMPLETED;// change according to variable name state ,enum name as ControlState
-		return ChAnGe;
+		return change;//change variable name as change
 	}
 	
 
