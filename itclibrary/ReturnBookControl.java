@@ -1,7 +1,6 @@
 // Initiate to fix "ReturnBookControl.java" file
 public class ReturnBookControl {
 
-
     private ReturnBookUI returnBookUI; // Create an object of ReturnBookUI class to use the functionality of ReturnBookUI
     private enum ControlState { INITIALISED, READY, INSPECTING }; //Create an enum "ControlState" and initialize to INITIALISED, READY, and INSPECTING
     private ControlState controlState; // Create an object of ControlState class to use the functionality of ControlState
@@ -16,7 +15,6 @@ public class ReturnBookControl {
         this.library = Library.getInstance();   // Referring library object of ReturnBookControl to the singleton of Library class
         controlState = ControlState.INITIALISED;// Assign controlState as "INITIALISED" state
     }
-	
 
     // Create setUI method which sets user interface to the settings which is passing to the method
     // This method requires ReturnBookUI object to set user interface
@@ -57,7 +55,6 @@ public class ReturnBookControl {
         }
 
         currentLoan = library.getLoan(bookId); // Assign currentLoan to the Loan object from Library class's method "getLoan" by passing bookId to the method
-
         double overDueFine = 0.0; // Initialize overDueFine and assign it to 0.0
 
         // If currentLoan is over due then assign overDueFine to fine on over due by using the "calculateOverDueFine" method of Library class
@@ -100,5 +97,6 @@ public class ReturnBookControl {
         returnBookUI.setState(ReturnBookUI.UI_STATE.READY); // Set the state of returnBookUI object to "READY" by calling their method "setState" and passing the static enum of ReturnBookUI
         controlState = ControlState.READY; // Set the state of controlState to "READY" state
     }
-
 }
+// Finalize "ReturnBookControl.java" file
+
