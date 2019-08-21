@@ -15,7 +15,7 @@ public class Book implements Serializable {
     private State state; // Create an instance of enum and name it as "State"
 	
 	
-	public book(String author, String title, String callNo, int id) {
+	public Book(String author, String title, String callNo, int id) {
 		this.AUTHOR = author;
 		this.TITLE = title;
 		this.CALLNO = callNo;
@@ -34,32 +34,32 @@ public class Book implements Serializable {
 		return sb.toString();
 	}
 
-	public Integer ID() {
+	public Integer getId() {
 		return ID;
 	}
 
-	public String TITLE() {
+	public String getTitle() {
 		return TITLE;
 	}
 
 
 	
-	public boolean AVAILABLE() {
+	public boolean isAvailable() {
 		return State == STATE.AVAILABLE;
 	}
 
 	
-	public boolean On_loan() {
+	public boolean isOnLoan() {
 		return State == STATE.ON_LOAN;
 	}
 
 	
-	public boolean IS_Damaged() {
+	public boolean isDamaged() {
 		return State == STATE.DAMAGED;
 	}
 
 	
-	public void Borrow() {
+	public void borrowBook() {
 		if (State.equals(STATE.AVAILABLE)) {
 			State = STATE.ON_LOAN;
 		}
@@ -70,7 +70,7 @@ public class Book implements Serializable {
 	}
 
 
-	public void Return(boolean DAMAGED) {
+	public void returnBook(boolean DAMAGED) {
 		if (State.equals(STATE.ON_LOAN)) {
 			if (DAMAGED) {
 				State = STATE.DAMAGED;
@@ -85,7 +85,7 @@ public class Book implements Serializable {
 	}
 
 	
-	public void Repair() {
+	public void repairBook() {
 		if (State.equals(STATE.DAMAGED)) {
 			State = STATE.AVAILABLE;
 		}
