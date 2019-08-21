@@ -12,18 +12,18 @@ public class Book implements Serializable {
     private int id;         // Create "id" integer for saving the unique identity of the book
 
     private enum State { AVAILABLE, ON_LOAN, DAMAGED, RESERVED }; //Create an enum "State" and define states as AVAILABLE, ON_LOAN, DAMAGED, and RESERVED.
-    private State state; // Create an instance of enum and name it as "State"
-	
+    private State state; // Create an instance of enum and name it as "State"   
+
     // Create a constructor of Book class and set all the private
     // This constructor enforces to set all private variables when the object of this class is created.
-    // It requires unique identity(id), author name(author), title of the book(title), and phone number to contact author(callNo).	
-	public Book(String author, String title, String callNo, int id) {
-		this.AUTHOR = author;
-		this.TITLE = title;
-		this.CALLNO = callNo;
-		this.ID = id;
-		this.State = STATE.AVAILABLE;
-	}
+    // It requires unique identity(id), author name(author), title of the book(title), and phone number to contact author(callNo).
+    public Book(String author, String title, String callNo, int id) {
+        this.author = author;    // it sets the author string of the Book class which passes to the constructor.
+        this.title = title;      // it sets the title string of the Book class which passes to the constructor.
+        this.callNo = callNo;    // it sets the callNo string of the Book class which passes to the constructor.
+        this.id = id;            // it sets the id integer of the Book class which passes to the constructor.
+        this.state = State.AVAILABLE;  // it sets the state enum of the Book to the "AVAILABLE" state.
+    }
 
     // Create a method "toString" which combine all the information of the Book class and return as a string.	
 	public String toString() {
