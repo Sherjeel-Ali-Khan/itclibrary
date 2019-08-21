@@ -6,21 +6,21 @@ public class PayFineUI {
 
 	public static enum UI_STATE { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
 
-	private PayFineControl CoNtRoL;
+	private PayFineControl control;// change the variable name as control
 	private Scanner input;
-	private UI_STATE StAtE;
+	private UI_STATE state;// change the variable name as state
 
 	
-	public PayFineUI(PayFineControl control) {
-		this.CoNtRoL = control;
+	public PayFineUI(PayFineControl control1) {//change parameter name control to control1 for easyli identify with variable name
+		this.control = control1;// change according to parameter and variable name control1 and control
 		input = new Scanner(System.in);
-		StAtE = UI_STATE.INITIALISED;
-		control.Set_UI(this);
+		state = UI_STATE.INITIALISED;// change according to variable name state
+		control1.Set_UI(this);// change according to parameter name control1
 	}
 	
 	
-	public void Set_State(UI_STATE state) {
-		this.StAtE = state;
+	public void Set_State(UI_STATE state1) {//change parameter name state to state1 for easyli identify with variable name
+		this.state = state1;// change according to parameter and variable name state1 and state
 	}
 
 
@@ -29,17 +29,17 @@ public class PayFineUI {
 		
 		while (true) {
 			
-			switch (StAtE) {
+			switch (state) {// change the variable name as state
 			
 			case READY:
 				String Mem_Str = input("Swipe member card (press <enter> to cancel): ");
 				if (Mem_Str.length() == 0) {
-					CoNtRoL.CaNcEl();
+					control.CaNcEl();// change according to variable name control
 					break;
 				}
 				try {
 					int Member_ID = Integer.valueOf(Mem_Str).intValue();
-					CoNtRoL.Card_Swiped(Member_ID);
+					control.Card_Swiped(Member_ID);// change according to variable name control
 				}
 				catch (NumberFormatException e) {
 					output("Invalid memberId");
@@ -50,7 +50,7 @@ public class PayFineUI {
 				double AmouNT = 0;
 				String Amt_Str = input("Enter amount (<Enter> cancels) : ");
 				if (Amt_Str.length() == 0) {
-					CoNtRoL.CaNcEl();
+					control.CaNcEl();// change according to variable name control
 					break;
 				}
 				try {
@@ -61,7 +61,7 @@ public class PayFineUI {
 					output("Amount must be positive");
 					break;
 				}
-				CoNtRoL.PaY_FiNe(AmouNT);
+				control.PaY_FiNe(AmouNT);// change according to variable name control
 				break;
 								
 			case CANCELLED:
@@ -74,7 +74,7 @@ public class PayFineUI {
 			
 			default:
 				output("Unhandled state");
-				throw new RuntimeException("FixBookUI : unhandled state :" + StAtE);			
+				throw new RuntimeException("FixBookUI : unhandled state :" + state);// change the variable name as state			
 			
 			}		
 		}		
