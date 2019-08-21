@@ -31,11 +31,11 @@ public class BorrowBookControl {
 	}
 
 
-	public void Swiped(int MEMMER_ID) {
+	public void Swiped(int memberId) { // change parameter name ( To: memberId; Orig: MEMMER_ID;)
 		if (!ctrlState.equals(ControlState.READY)) //Change enum name (Orig: enum CONTROL_STATE) (To:ctrlState; Orig:State;)
 			throw new RuntimeException("BorrowBookControl: cannot call cardSwiped except in READY state");
 
-		member = library.MEMBER(MEMMER_ID); // Change variable name ( To: library;  Orig: LIBRARY; , To: member;  Orig: M;)
+		member = library.MEMBER(memberId); // Change variable name ( To: library;  Orig: LIBRARY; , To: member;  Orig: M;)
 		if (member == null) {  // Change variable name (To: member;  Orig: M;)
 			borrowBookUi.Display("Invalid memberId");  // Change variable name to borrowBookUi (Orig: UI)
 			return;
@@ -110,7 +110,7 @@ public class BorrowBookControl {
 
 	public void cancel() {
 		UI.Set_State(BorrowBookUi.UI_STATE.CANCELLED);  // Change variable name to borrowBookUi (Orig: UI) // Change class name to BorrowBookUi (Orig: BorrowBookUI)
-		ctrlState = ControlState.CANCELLED; //Change enum name (Orig: enum CONTROL_STATE) (To:ctrlState; Orig:State;) 
+		ctrlState = ControlState.CANCELLED; //Change enum name (Orig: enum CONTROL_STATE) (To:ctrlState; Orig:State;)
 	}
 
 
