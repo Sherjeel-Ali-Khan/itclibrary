@@ -5,21 +5,21 @@ public class FixBookUI {
 
 	public static enum UI_STATE { INITIALISED, READY, FIXING, COMPLETED };
 
-	private FixBookControl CoNtRoL;
+	private FixBookControl control;// change the variable name as control
 	private Scanner input;
-	private UI_STATE StAtE;
+	private UI_STATE state;// change the variable name as state
 
 	
-	public FixBookUI(FixBookControl control) {
-		this.CoNtRoL = control;
+	public FixBookUI(FixBookControl control1) {//change parameter name control to control1 for easyli identify with variable name
+		this.control = control1;// change according to parameter and variable name control1 and control
 		input = new Scanner(System.in);
-		StAtE = UI_STATE.INITIALISED;
-		control.Set_Ui(this);
+		state = UI_STATE.INITIALISED;// change according to variable name state
+		control1.Set_Ui(this);// change according to parameter name control1
 	}
 
 
-	public void Set_State(UI_STATE state) {
-		this.StAtE = state;
+	public void Set_State(UI_STATE state1) {//change parameter name state to state11 for easyli identify with variable name
+		this.state = state1;// change according to parameter and variable name state1 and state
 	}
 
 	
@@ -28,17 +28,17 @@ public class FixBookUI {
 		
 		while (true) {
 			
-			switch (StAtE) {
+			switch (state) {// change according to variable name state
 			
 			case READY:
 				String Book_STR = input("Scan Book (<enter> completes): ");
 				if (Book_STR.length() == 0) {
-					CoNtRoL.SCannING_COMplete();
+					control.SCannING_COMplete();// change according to variable name control
 				}
 				else {
 					try {
 						int Book_ID = Integer.valueOf(Book_STR).intValue();
-						CoNtRoL.Book_scanned(Book_ID);
+						control.Book_scanned(Book_ID);// change according to variable name control
 					}
 					catch (NumberFormatException e) {
 						output("Invalid bookId");
@@ -52,7 +52,7 @@ public class FixBookUI {
 				if (AnS.toUpperCase().equals("Y")) {
 					FiX = true;
 				}
-				CoNtRoL.FIX_Book(FiX);
+				control.FIX_Book(FiX);// change according to variable name control
 				break;
 								
 			case COMPLETED:
@@ -61,7 +61,7 @@ public class FixBookUI {
 			
 			default:
 				output("Unhandled state");
-				throw new RuntimeException("FixBookUI : unhandled state :" + StAtE);			
+				throw new RuntimeException("FixBookUI : unhandled state :" + state);// change according to variable name state			
 			
 			}		
 		}
