@@ -61,8 +61,9 @@ public class Library implements Serializable {
 				catch (Exception e) {
 					throw new RuntimeException(e);
 				}
-			}
-			else SeLf = new Library();
+			}else{
+                            SeLf = new Library();
+                        }
 		}
 		return SeLf;
 	}
@@ -138,15 +139,17 @@ public class Library implements Serializable {
 
 	
 	public Member getMember(int memberId) { //Change method name MEMBER to getMember
-		if (members.containsKey(memberId)) 
-			return members.get(memberId);
+		if (members.containsKey(memberId)){
+                    return members.get(memberId);
+                }			
 		return null;
 	}
 
 	
 	public book getBook(int bookId) { //Change method name Book to getBook
-		if (catalog.containsKey(bookId)) 
-			return catalog.get(bookId);		
+		if (catalog.containsKey(bookId)){
+                    return catalog.get(bookId);
+                } 					
 		return null;
 	}
 
@@ -157,16 +160,18 @@ public class Library implements Serializable {
 
 	
 	public boolean isMemberCanBorrow(Member member) {	//Change method name MEMBER_CAN_BORROW to isMemberCanBorrow
-		if (member.getNumberOfCurrentLoans() == LOAN_LIMIT ) 
-			return false;
+		if (member.getNumberOfCurrentLoans() == LOAN_LIMIT ){
+                   return false; 
+                }			
 				
-		if (member.getFinesOwed() >= MAX_FINES_OWED) 
-			return false;
+		if (member.getFinesOwed() >= MAX_FINES_OWED) {
+                    return false;
+                }			
 				
-		for (Loan loan : member.getLoans()) 
-			if (loan.isOverDue()) 
+		for (Loan loan : member.getLoans()) {
+                    if (loan.isOverDue()) 
 				return false;
-			
+                }				
 		return true;
 	}
 
@@ -234,12 +239,8 @@ public class Library implements Serializable {
 		if (damagedBooks.containsKey(currentBook.ID())) {
 			currentBook.Repair();
 			damagedBooks.remove(currentBook.ID());
-		}
-		else {
+		}else {
 			throw new RuntimeException("Library: repairBook: book is not damaged");
-		}
-		
-	}
-	
-	
+		}		
+	}	
 }
