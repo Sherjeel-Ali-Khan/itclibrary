@@ -25,17 +25,17 @@ public class Book implements Serializable {
         this.state = State.AVAILABLE;  // it sets the state enum of the Book to the "AVAILABLE" state.
     }
 
-    // Create a method "toString" which combine all the information of the Book class and return as a string.	
-	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("Book: ").append(ID).append("\n")
-		  .append("  Title:  ").append(TITLE).append("\n")
-		  .append("  Author: ").append(AUTHOR).append("\n")
-		  .append("  CallNo: ").append(CALLNO).append("\n")
-		  .append("  State:  ").append(State);
-		
-		return sb.toString();
-	}
+    // Create a method "toString" which combine all the information of the Book class and return as a string.
+    public String toString() {
+        StringBuilder sb = new StringBuilder(); // Create StringBuilder as sb to combine all the data of the class
+        sb.append("Book: ").append(id).append("\n")
+                .append("  Title:  ").append(title).append("\n")
+                .append("  Author: ").append(author).append("\n")
+                .append("  CallNo: ").append(callNo).append("\n")
+                .append("  State:  ").append(state); // Combine the data (unique identity, title, author name, phone number, and state of the book)  )
+
+        return sb.toString(); // return StringBuilder "sb" as a string
+    }
 
     // Create getId method to get unique identity of the book
 	public Integer getId() {
