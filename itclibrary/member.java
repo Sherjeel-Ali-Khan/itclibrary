@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 @SuppressWarnings("serial")
-public class member implements Serializable {
+public class Member implements Serializable {
 
 	private String lastName; //Change variable LN to lastName
 	private String firstName; //Change variable FN to firstName
@@ -17,7 +17,7 @@ public class member implements Serializable {
 	private Map<Integer, loan> loans; //Change variable LNS to loans
 
 	
-	public member(String lastName, String firstName, String email, int phoneNo, int id) {
+	public Member(String lastName, String firstName, String email, int phoneNo, int id) {
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.email = email;
