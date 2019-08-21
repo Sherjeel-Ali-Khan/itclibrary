@@ -11,13 +11,13 @@ public class ReturnBookUI {
 
     // Create a constructor of ReturnBookUI class which takes ReturnBookControl object and sets basic setting for the class which are as follow
     // This method requires ReturnBookControl object to set the user interface of ReturnBookControl class by using their method "setUI"
-    // It sets state as INITIALISED and initialize the scanner object	
-	public ReturnBookUI(ReturnBookControl returnBookControl) {
-		this.CoNtRoL = control;
-		input = new Scanner(System.in);
-		StATe = UI_STATE.INITIALISED;
-		control.Set_UI(this);
-	}
+    // It sets state as INITIALISED and initialize the scanner object
+    public ReturnBookUI(ReturnBookControl returnBookControl) {
+        this.returnBookControl = returnBookControl; // Referring returnBookControl object of this class to the returnBookControl object passes by the constructor
+        input = new Scanner(System.in); // Initialize the scanner object
+        state = UIState.INITIALISED;    // Assign state as "INITIALISED" state
+        returnBookControl.setUI(this); // It sets the user interface of returnBookControl by passing the instance of this class
+    }
 
     // Create run method which checks the UIState and work accordingly
     // If state is READY then ask bookId from user then pass it to ReturnBookControl class by their method "bookScanned"
