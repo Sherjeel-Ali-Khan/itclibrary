@@ -40,7 +40,7 @@ public class PayFineControl {
 	}
 	
 	
-	public void isCancel() {// change method neme as isCancel
+	public void setCancel() {// change method neme as setCancel
 		ui.setState(PayFineUI.UiState.CANCELLED);// change according to variable name ui and method name setState ,enum name as UiState
 		state = ControlState.CANCELLED;// change according to variable name state ,enum name as ControlState
 	}
