@@ -7,7 +7,7 @@ public class FixBookControl {
 	private book currentBook;// change the variable name as currentBook
 
 	public FixBookControl() {
-		this.library = library.isInstance();// change according to variable name library and method name isInstance
+		this.library = library.setInstance();// change according to variable name library and method name setInstance
 		state = ControlState.INITIALISED;// change according to variable name state ,enum name as ControlState
 	}
 	
@@ -28,14 +28,14 @@ public class FixBookControl {
 		currentBook = library.Book(bookId);// change according to variable name library, currentBook
 		
 		if (currentBook == null) {// change according to variable name currentBook
-			ui.isDisplay("Invalid bookId");// change according to variable name ui and method name isDisplay
+			ui.setDisplay("Invalid bookId");// change according to variable name ui and method name setDisplay
 			return;
 		}
 		if (!currentBook.isDamaged()) {// change according to variable name currentBook, method nameisDamaged
-			ui.isDisplay("Book has not been damaged");// change according to variable name ui and method name isDisplay
+			ui.setDisplay("Book has not been damaged");// change according to variable name ui and method name setDisplay
 			return;
 		}
-		ui.isDisplay(currentBook.toString());// change according to variable name ui, currentBook and method name isDisplay
+		ui.setDisplay(currentBook.toString());// change according to variable name ui, currentBook and method name setDisplay
 		ui.setState(FixBookUI.UiState.FIXING);// change according to variable name ui and method name setState, enum name as Uistate
 		state = ControlState.FIXING;// change according to variable name state	,enum name as ControlState	
 	}
