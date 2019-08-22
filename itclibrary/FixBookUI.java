@@ -18,7 +18,7 @@ public class FixBookUI {
     }
 
     public void isRun(){//change method name as isRun
-		setOutput("Fix Book Use Case UI\n");// change according to method name setOutput
+		getOutput("Fix Book Use Case UI\n");// change according to method name setOutput
 		
 		while (true) {	
 			switch (state) {// change according to variable name state
@@ -31,7 +31,7 @@ public class FixBookUI {
 							int bookId= Integer.valueOf(bookString).intValue();// change according to variable name bookString, bookId
 							control.bookScanned(bookId);// change according to variable name control,bookId and method name bookScanned
 						} catch (NumberFormatException e) {
-									setOutput("Invalid bookId");// change according to method name setOutput
+									getOutput("Invalid bookId");// change according to method name setOutput
 						}
 					}
 					break;		
@@ -45,11 +45,11 @@ public class FixBookUI {
 					break;
 										
 				case COMPLETED:
-					setOutput("Fixing process complete");// change according to method name setOutput
+					getOutput("Fixing process complete");// change according to method name setOutput
 					return;
 					
 				default:
-					setOutput("Unhandled state");// change according to method name setOutput
+					getOutput("Unhandled state");// change according to method name setOutput
 					throw new RuntimeException("FixBookUI : unhandled state :" + state);// change according to variable name state			
 					
 			}		
@@ -67,6 +67,6 @@ public class FixBookUI {
     }
 
     public void setDisplay(Object object) {//change method name as setDisplay
-		setOutput(object); // change according to method name setOutput
+		getOutput(object); // change according to method name setOutput
     } 
 }
