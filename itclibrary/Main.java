@@ -8,13 +8,13 @@ public class Main {
 	private static Library library; //Change class name and variable name ( To: Library; Orig: library;)
 	private static String menu; // Change variable name ( To: menu; Orig: MENU;)
 	private static Calendar calandar; // Change variable name ( To: calandar; Orig: CAL;)
-	private static SimpleDateFormat smplDateFmrt; // Change variable name ( To: smplDateFmrt; Orig: SDF;)
+	private static SimpleDateFormat simpleDateFormat; // Change variable name ( To: simpleDateFormat; Orig: SDF;)
 
 
 	private static String getMenu() { // Change method name (To:getMenu; Orig:Get_menu;)
-		StringBuilder sb = new StringBuilder();
+		StringBuilder stringBuilder = new StringBuilder(); // Change variable name ( To: stringBuilder; Orig: sb;)
 
-		sb.append("\nLibrary Main Menu\n\n")
+		stringBuilder.append("\nLibrary Main Menu\n\n") // Change variable name ( To: stringBuilder; Orig: sb;)
 		  .append("  M  : add member\n")
 		  .append("  LM : list members\n")
 		  .append("\n")
@@ -33,7 +33,7 @@ public class Main {
 		  .append("\n")
 		  .append("Choice : ");
 
-		return sb.toString();
+		return stringBuilder.toString(); // Change variable name ( To: stringBuilder; Orig: sb;)
 	}
 
 
@@ -42,14 +42,14 @@ public class Main {
 			scannerInput = new Scanner(System.in); // Change variable name ( To: scannerInput; Orig: IN;)
 			this.library = Library.getInstance(); //Change class name and variable name ( To: Library; Orig: library;) Change method name (To:getInstance; Orig:INSTANCE;)
 			this.calandar = Calendar.getInstance(); // Change variable name ( To: calandar; Orig: CAL;) Change method name (To:getInstance; Orig:INSTANCE;)
-			smplDateFmrt = new SimpleDateFormat("dd/MM/yyyy"); // Change variable name ( To: smplDateFmrt; Orig: SDF;)
+			simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy"); // Change variable name ( To: simpleDateFormat; Orig: SDF;)
 
-			for (Member m : this.library.getMembers()) { //Change class name ( To: Member; Orig: member; ) Change variable name  To: library; Orig: LIB; ) Change method name (To:getMembers; Orig:MEMBERS;)
-				output(m);
+			for (Member member : this.library.getMembers()) { //Change class name ( To: Member; Orig: member; ) Change variable name  (To: library; Orig: LIB; )  (To: member; Orig: m; ) Change method name (To:getMembers; Orig:MEMBERS;)
+				output(member);
 			}
 			output(" ");
-			for (Book b : library.getBooks()) {  //Change class name ( To: Book; Orig: book; )  Change variable name  To: library; Orig: LIB; ) Change method name (To:getBooks; Orig:BOOKS;)
-				output(b);
+			for (Book book : library.getBooks()) {  //Change class name ( To: Book; Orig: book; )  Change variable name  (To: library; Orig: LIB; )  (To: book; Orig: b; ) Change method name (To:getBooks; Orig:BOOKS;)
+				output(book);
 			}
 
 			menu = getMenu(); // Change variable name ( To: menu; Orig: MENU;)
@@ -58,10 +58,10 @@ public class Main {
 
 			while (!condition) { // Change variable name ( To: condition; Orig: e;)
 
-				output("\n" + smplDateFmrt.format(calandar.Date())); // Change variable name ( To: calandar; Orig: CAL;) ( To: smplDateFmrt; Orig: SDF;)
-				String c = input(menu); // Change variable name ( To: menu; Orig: MENU;)
+				output("\n" + simpleDateFormat.format(calandar.Date())); // Change variable name ( To: calandar; Orig: CAL;) ( To: simpleDateFormat; Orig: SDF;)
+				String selectedOption = input(menu); // Change variable name ( To: menu; Orig: MENU;) ( To: selectedOption; Orig: c;)
 
-				switch (c.toUpperCase()) {
+				switch (selectedOption .toUpperCase()) { // Change variable name ( To: selectedOption; Orig: c;)
 
 				case "M":
 					addMember(); // Change method name (To:addMember; Orig:ADD_MEMBER;)
@@ -88,7 +88,7 @@ public class Main {
 					break;
 
 				case "R":
-					ReturnBook(); // Change method name (To:ReturnBook; Orig:RETURN_BOOK;)
+					returnBook(); // Change method name (To:returnBook; Orig:RETURN_BOOK;)
 					break;
 
 				case "LL":
@@ -121,13 +121,13 @@ public class Main {
 	}
 
 	private static void payFine() { // Change method name (To:payFine; Orig:FINES;)
-		new PayFineUI(new PayFineControl()).RuN();
+		new PayFineUi(new PayFineControl()).run(); // Change method name (To:PayFineUi; Orig:PayFineUI;) (To:run; Orig:RuN;)
 	}
 
 
 	private static void currentLoans() { // Change method name (To:currentLoans; Orig:CURRENT_LOANS;)
 		output("");
-		for (loan loan : library.currentLoans()) { //Change variable name  To: library; Orig: LIB; ) Change method name (To:currentLoans; Orig:CurrentLoans;)
+		for (Loan loan : library.currentLoans()) { //Change variable name  To: library; Orig: LIB; ) Change method name (To:currentLoans; Orig:CurrentLoans;)  Change class name ( To: Loan; Orig: loan;)
 			output(loan + "\n");
 		}
 	}
@@ -136,7 +136,7 @@ public class Main {
 
 	private static void getBooks() {  // Change method name (To:getBooks; Orig:BOOKS;)
 		output("");
-		for (book book : library.getBooks()) { //Change variable name  To: library; Orig: LIB; ) Change method name (To:getBooks; Orig:BOOKS;)
+		for (Book book : library.getBooks()) { //Change variable name  To: library; Orig: LIB; ) Change method name (To:getBooks; Orig:BOOKS;) Change class name ( To: Book; Orig: book;)
 			output(book + "\n");
 		}
 	}
@@ -145,7 +145,7 @@ public class Main {
 
 	private static void getMembers()) { // Change method name (To:getMembers; Orig:MEMBERS;)
 		output("");
-		for (member member : library.getMembers()) { //Change variable name  To: library; Orig: LIB; ) Change method name (To:getMembers; Orig:MEMBERS;)
+		for (Member member : library.getMembers()) { //Change variable name  To: library; Orig: LIB; ) Change method name (To:getMembers; Orig:MEMBERS;) Change class name ( To: Member; Orig: member;)
 			output(member + "\n");
 		}
 	}
@@ -157,13 +157,13 @@ public class Main {
 	}
 
 
-	private static void ReturnBook() { // Change method name (To:ReturnBook; Orig:RETURN_BOOK;)
-		new ReturnBookUi(new ReturnBookControl()).RuN(); //Change class name (To:ReturnBookUi; Orig:ReturnBookUI;)
+	private static void returnBook() { // Change method name (To:returnBook; Orig:RETURN_BOOK;)
+		new ReturnBookUi(new ReturnBookControl()).run(); //Change class name (To:ReturnBookUi; Orig:ReturnBookUI;) Change method name (To:run; Orig:RuN;)
 	}
 
 
 	private static void fixBooks() { // Change method name (To:fixBooks; Orig:FIX_BOOKS;)
-		new FixBookiI(new FixBookControl()).RuN(); //Change class name (To:FixBookUi; Orig:FixBookUI;)
+		new FixBookUi(new FixBookControl()).run(); //Change class name (To:FixBookUi; Orig:FixBookUI;)  Change method name (To:run; Orig:RuN;)
 
 	}
 
@@ -173,7 +173,7 @@ public class Main {
 			int days = Integer.valueOf(input("Enter number of days: ")).intValue();
 			calandar.incrementDate(days); // Change variable name ( To: calandar; Orig: CAL;)
 			library.checkCurrentLoans(); //Change variable name  To: library; Orig: LIB; )
-			output(smplDateFmrt.format(calandar.Date())); // Change variable name ( To: calandar; Orig: CAL;) ( To: smplDateFmrt; Orig: SDF;)
+			output(simpleDateFormat.format(calandar.Date())); // Change variable name ( To: calandar; Orig: CAL;) ( To: simpleDateFormat; Orig: SDF;)
 
 		} catch (NumberFormatException e) {
 			 output("\nInvalid number of days\n");
