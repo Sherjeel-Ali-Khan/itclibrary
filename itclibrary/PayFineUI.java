@@ -32,7 +32,7 @@ public class PayFineUI {
 				case READY:
 					String memberString = setInput("Swipe member card (press <enter> to cancel): ");// change using method name as setInput, variable name memberString
 					if (memberString.length() == 0) {//change variable name as memberString
-						control.isCancel();// change according to variable name control and method name isCancel
+						control.setCancel();// change according to variable name control and method name setCancel
 						break;
 					}
 					try {
@@ -47,7 +47,7 @@ public class PayFineUI {
 					double amount = 0;// change variable name as amount
 					String amountString = setInput("Enter amount (<Enter> cancels) : ");// change using method name as setInput, variable name as amountString
 					if (amountString.length() == 0) {// change variable name as amountString
-						control.isCancel();// change according to variable name control and method name isCancel
+						control.setCancel();// change according to variable name control and method name setCancel
 						break;
 					}
 					try {
