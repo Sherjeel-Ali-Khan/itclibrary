@@ -9,17 +9,17 @@ public class PayFineControl {
 
 
 	public PayFineControl() {
-		this.library = library.isInstance();// change according to variable name library and method name isInstance
+		this.library = library.getInstance();// change according to variable name library and method name getInstance
 		state = ControlState.INITIALISED;// change according to variable name state ,enum name as ControlState
 	}
 	
 	// change method neme as setUi
-	public void setUi(PayFineUI ui1) {//change parameter name ui to state1 for uii identify with variable name
+	public void setUi(PayFineUI payFineUI) {//change parameter name ui to state1 for payFineUI identify with variable name
 		if (!state.equals(ControlState.INITIALISED)) {// change according to variable name state ,enum name as ControlState 
 			throw new RuntimeException("PayFineControl: cannot call setUI except in INITIALISED state");
 		}	
-		this.ui = ui1;// change according to parameter and variable name ui1 and uil
-		ui1.setState(PayFineUI.UiState.READY);// change according to parameter name ui1 and method name setState ,enum name as UiState
+		this.ui = payFineUI;// change according to parameter and variable name payFineUI and ui
+		payFineUI.setState(PayFineUI.UiState.READY);// change according to parameter name payFineUI and method name setState ,enum name as UiState
 		state = ControlState.READY;// change according to variable name state ,enum name as ControlState 		
 	}
 
