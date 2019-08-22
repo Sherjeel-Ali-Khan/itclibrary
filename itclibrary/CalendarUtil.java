@@ -11,7 +11,7 @@ public class CalendarUtil {  //Change class name (To:CalendarUtil; Orig:Calendar
 		calendarObj = java.util.Calendar.getInstance(); //Change variable name (To:calendarObj; Orig:CaLeNdAr;)
 	}
 
-	public static CalendarUtil getInstanceOfUtil() { //Change method name (To:getInstanceOfUtil; Orig:INSTANCE;)
+	public static CalendarUtil getInstance() { //Change method name (To:getInstanceOfUtil; Orig:INSTANCE;)  (To:getInstance; Orig:getInstanceOfUtil;)
 		if (calendarUtil == null) { //Change variable name (To:calendarUtil; Orig:SeLf;)
 			calendarUtil = new CalendarUtil(); //Change variable name (To:calendarUtil; Orig:SeLf;)
 		}
@@ -49,18 +49,18 @@ public class CalendarUtil {  //Change class name (To:CalendarUtil; Orig:Calendar
 	}
 
 	public synchronized Date getDueDate(int loanPeriod) { //Change method name (To:getDueDate; Orig:Due_Date;)
-		Date NoW = Date();
+		Date currentDate = Date();  //Change variable name (To:currentDate; Orig:Now; )
 		calendarObj.add(java.util.Calendar.DATE, loanPeriod);  //Change variable name (To:calendarObj; Orig:CaLeNdAr;)
 		Date dueDate = calendarObj.getTime(); //Change variable name (To:calendarObj; Orig:CaLeNdAr; , To:dueDate; Orig:DuEdAtE;)
-		calendarObj.setTime(NoW); //Change variable name (To:calendarObj; Orig:CaLeNdAr;)
+		calendarObj.setTime(currentDate); //Change variable name (To:calendarObj; Orig:CaLeNdAr;) (To:currentDate; Orig:Now; )
 		return dueDate; //Change variable name (To:dueDate; Orig:DuEdAtE;)
 	}
 
 	public synchronized long getDaysDifference(Date targetDate) { //Change method name (To:getDaysDifference; Orig:Get_Days_Difference;)
 
-		long diffMillis = Date().getTime() - targetDate.getTime();  //Change variable name (To:diffMillis; Orig:Diff_Millis;)
-	    long diffDays = TimeUnit.DAYS.convert(diffMillis, TimeUnit.MILLISECONDS);  //Change variable name (To:diffDays; Orig:Diff_Days;)
-	    return diffDays;  //Change variable name (To:diffDays; Orig:Diff_Millis;)
+		long differenceInMillis  = Date().getTime() - targetDate.getTime();  //Change variable name (To:diffMillis; Orig:Diff_Millis;) (To:differenceInMillis; Orig:diffMillis;)
+	    long differenceInDays  = TimeUnit.DAYS.convert(diffMillis, TimeUnit.MILLISECONDS);  //Change variable name (To:diffDays; Orig:Diff_Days;) (To:differenceInDays; Orig:diffDays;)
+	    return differenceInDays;  //Change variable name (To:diffDays; Orig:Diff_Millis;)
 	}
 
 }
