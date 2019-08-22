@@ -57,16 +57,16 @@ public class FixBookUI {
 		
     }
 
-    private String setInput(String prompt) {//change method name as setInput
+    private String getInput(String prompt) {//change method name as getInput
 		System.out.print(prompt);
 		return input.nextLine();
     }	
 			
-    private void setOutput(Object object) {//change method name as setOutput
+    private void getOutput(Object object) {//change method name as getOutput
 		System.out.println(object);
     }
 
-    public void isDisplay(Object object) {//change method name as isDisplay
+    public void setDisplay(Object object) {//change method name as setDisplay
 		setOutput(object); // change according to method name setOutput
     } 
 }
