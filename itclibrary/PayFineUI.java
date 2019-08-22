@@ -88,7 +88,7 @@ public class PayFineUI {
 	}	
 			
 
-	public void isDisplay(Object object) {// change method name as display
+	public void setDisplay(Object object) {// change method name as display
 		setOutput(object);// change using method name as setOutput
 	}
 
