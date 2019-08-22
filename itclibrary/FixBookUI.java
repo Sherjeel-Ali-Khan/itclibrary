@@ -23,7 +23,7 @@ public class FixBookUI {
 		while (true) {	
 			switch (state) {// change according to variable name state
 				case READY:
-					String bookString = setInput("Scan Book (<enter> completes): ");// change according to method name setInput, variable name bookString
+					String bookString = getInput("Scan Book (<enter> completes): ");// change according to method name getInput, variable name bookString
 					if (bookString.length() == 0) {// change according to variable name bookString
 						control.scanningComplete();// change according to variable name control, and method name scanningComplete
 					} else {
@@ -36,7 +36,7 @@ public class FixBookUI {
 					}
 					break;		
 				case FIXING:
-					String answer = setInput("Fix Book? (Y/N) : ");// change according to method name setInput, variable name answer
+					String answer = getInput("Fix Book? (Y/N) : ");// change according to method name getInput, variable name answer
 					boolean fixAnswer = false;// change variable name as fixAnswer
 					if (answer.toUpperCase().equals("Y")) {// change according to variable name answer
 						fixAnswer = true;// change according to variable name fixAnswer
