@@ -11,7 +11,7 @@ public class CalendarUtil {  //Change class name (To:CalendarUtil; Orig:Calendar
 		calendarObj = java.util.Calendar.getInstance(); //Change variable name (To:calendarObj; Orig:CaLeNdAr;)
 	}
 
-	public static CalendarUtil getInstance() { //Change method name (To:getInstanceOfUtil; Orig:INSTANCE;)  (To:getInstance; Orig:getInstanceOfUtil;)
+	public static CalendarUtil getInstance() { //Change method name (To:getInstanceOfUtil; Orig:INSTANCE;)
 		if (calendarUtil == null) { //Change variable name (To:calendarUtil; Orig:SeLf;)
 			calendarUtil = new CalendarUtil(); //Change variable name (To:calendarUtil; Orig:SeLf;)
 		}
@@ -25,7 +25,7 @@ public class CalendarUtil {  //Change class name (To:CalendarUtil; Orig:Calendar
 	public synchronized void setDate(Date date) { //Change method name (To:setDate; Orig:Set_dATE;)
 		try { //Change variable name (To:calendarObj; Orig:CaLeNdAr;) and identation changed
 			calendarObj.setTime(date);
-			calendarObj.set(java.util.Calendar.HOUR_OF_DAY, 0)
+			calendarObj.set(java.util.Calendar.HOUR_OF_DAY, 0);
 			calendarObj.set(java.util.Calendar.MINUTE, 0);
 			calendarObj.set(java.util.Calendar.SECOND, 0);
 			calendarObj.set(java.util.Calendar.MILLISECOND, 0);
@@ -49,17 +49,17 @@ public class CalendarUtil {  //Change class name (To:CalendarUtil; Orig:Calendar
 	}
 
 	public synchronized Date getDueDate(int loanPeriod) { //Change method name (To:getDueDate; Orig:Due_Date;)
-		Date currentDate = Date();  //Change variable name (To:currentDate; Orig:Now; )
+		Date currentDate = getDate();
 		calendarObj.add(java.util.Calendar.DATE, loanPeriod);  //Change variable name (To:calendarObj; Orig:CaLeNdAr;)
 		Date dueDate = calendarObj.getTime(); //Change variable name (To:calendarObj; Orig:CaLeNdAr; , To:dueDate; Orig:DuEdAtE;)
-		calendarObj.setTime(currentDate); //Change variable name (To:calendarObj; Orig:CaLeNdAr;) (To:currentDate; Orig:Now; )
+		calendarObj.setTime(currentDate); //Change variable name (To:calendarObj; Orig:CaLeNdAr;)
 		return dueDate; //Change variable name (To:dueDate; Orig:DuEdAtE;)
 	}
 
 	public synchronized long getDaysDifference(Date targetDate) { //Change method name (To:getDaysDifference; Orig:Get_Days_Difference;)
 
-		long differenceInMillis  = Date().getTime() - targetDate.getTime();  //Change variable name (To:diffMillis; Orig:Diff_Millis;) (To:differenceInMillis; Orig:diffMillis;)
-	    long differenceInDays  = TimeUnit.DAYS.convert(diffMillis, TimeUnit.MILLISECONDS);  //Change variable name (To:diffDays; Orig:Diff_Days;) (To:differenceInDays; Orig:diffDays;)
+            long differenceInMillis = getDate().getTime() - targetDate.getTime();  //Change variable name (To:diffMillis; Orig:Diff_Millis;)
+	    long differenceInDays = TimeUnit.DAYS.convert(differenceInMillis, TimeUnit.MILLISECONDS);  //Change variable name (To:diffDays; Orig:Diff_Days;)
 	    return differenceInDays;  //Change variable name (To:diffDays; Orig:Diff_Millis;)
 	}
 

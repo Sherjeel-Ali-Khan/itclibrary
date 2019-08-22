@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 
-public class BorrowBookUi { // Class name changed ( To: BorrowBookUi ; Orig: BorrowBookUI;)
+public class BorrowBookUI { // Class name changed ( To: BorrowBookUi ; Orig: BorrowBookUI;)
 
 	public static enum UiState { INITIALISED, READY, RESTRICTED, SCANNING, IDENTIFIED, FINALISING, COMPLETED, CANCELLED };  //Change enum name ( To: enum UiState; Orig: enum UI_STATE;)
 
@@ -10,7 +10,7 @@ public class BorrowBookUi { // Class name changed ( To: BorrowBookUi ; Orig: Bor
 	private UiState uiState; //Change enu name and variable name ( To: UiState uiState; Orig: UI_STATE StaTe;)
 
 
-	public BorrowBookUi(BorrowBookControl control) { // Default constructor name changed ( To: BorrowBookUi ; Orig: BorrowBookUI;)
+	public BorrowBookUI(BorrowBookControl control) { // Default constructor name changed ( To: BorrowBookUi ; Orig: BorrowBookUI;)
 		this.browBkCntrl = control; // Change variable name ( To: browBkCntrl; Orig: CONTROL;)
 		input = new Scanner(System.in);
 		uiState = UiState.INITIALISED; //Change enu name and variable name ( To: uiState = UiState.INITIALISED; Orig: StaTe = UI_STATE.INITIALISED;)
@@ -29,7 +29,7 @@ public class BorrowBookUi { // Class name changed ( To: BorrowBookUi ; Orig: Bor
 	}
 
 
-	public void Set_State(uiState state) { // Change parameter name ( To: state;  Orig: STATE;)
+	public void Set_State(UiState state) { // Change parameter name ( To: state;  Orig: STATE;)
 		this.uiState = state; // Change local variable name ( To: this.uiState = state;  Orig: UI_STATE = STATE; )
 	}
 
@@ -54,7 +54,7 @@ public class BorrowBookUi { // Class name changed ( To: BorrowBookUi ; Orig: Bor
 				}
 				try {
 					int Member_ID = Integer.valueOf(MEM_STR).intValue();
-					browBkCntrl.Swiped(Member_ID); // Change variable name ( To: browBkCntrl; Orig: CONTROL;)
+					browBkCntrl.swiped(Member_ID); // Change variable name ( To: browBkCntrl; Orig: CONTROL;)
 				}
 				catch (NumberFormatException e) {
 					output("Invalid Member Id");
@@ -71,12 +71,12 @@ public class BorrowBookUi { // Class name changed ( To: BorrowBookUi ; Orig: Bor
 			case SCANNING:
 				String Book_Str = input("Scan Book (<enter> completes): ");
 				if (Book_Str.length() == 0) {
-					browBkCntrl.Complete(); // Change variable name ( To: browBkCntrl; Orig: CONTROL;)
+					browBkCntrl.complete(); // Change variable name ( To: browBkCntrl; Orig: CONTROL;)
 					break;
 				}
 				try {
 					int BiD = Integer.valueOf(Book_Str).intValue();
-					browBkCntrl.Scanned(BiD); // Change variable name ( To: browBkCntrl; Orig: CONTROL;)
+					browBkCntrl.scanned(BiD); // Change variable name ( To: browBkCntrl; Orig: CONTROL;)
 
 				} catch (NumberFormatException e) {
 					output("Invalid Book Id");
@@ -90,7 +90,7 @@ public class BorrowBookUi { // Class name changed ( To: BorrowBookUi ; Orig: Bor
 					browBkCntrl.cancel(); // Change variable name ( To: browBkCntrl; Orig: CONTROL;)
 
 				} else {
-					browBkCntrl.Commit_LOans(); // Change variable name ( To: browBkCntrl; Orig: CONTROL;)
+					browBkCntrl.commitLoans(); // Change variable name ( To: browBkCntrl; Orig: CONTROL;)
 					input("Press <any key> to complete ");
 				}
 				break;
