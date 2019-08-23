@@ -24,7 +24,7 @@ public class ReturnBookControl {
             throw new RuntimeException("ReturnBookControl: cannot call setUI except in INITIALISED state"); // Throw an exception error of following text
         }
         this.returnBookUI = returnBookUI; // Referring library object of ReturnBookControl to the ReturnBookControl provided from the method
-        returnBookUI.setState(ReturnBookUI.UI_STATE.READY);  // Set the state of returnBookUI object to "READY" by calling their method "setState" and passing the static enum of ReturnBookUI
+        returnBookUI.setState(ReturnBookUI.UIState.READY);  // Set the state of returnBookUI object to "READY" by calling their method "setState" and passing the static enum of ReturnBookUI
         controlState = ControlState.READY; // Set the state of controlState to "READY" state
     }
 
@@ -49,12 +49,12 @@ public class ReturnBookControl {
         // If currentBook is not on Loan
         // Then ReturnBookUI display "Book has not been borrowed" message
         // And Exit the bookScanned method
-        if (!currentBook.onLoan()) { // If currentBook is not on Loan
+        if (!currentBook.isOnLoan()) { // If currentBook is not on Loan
             returnBookUI.display("Book has not been borrowed"); // returnBookUI display "Book has not been borrowed" message
             return; // Exit the bookScanned method
         }
 
-        currentLoan = library.getLoan(bookId); // Assign currentLoan to the Loan object from Library class's method "getLoan" by passing bookId to the method
+        currentLoan = library.getLoanByBookId(bookId); // Assign currentLoan to the Loan object from Library class's method "getLoan" by passing bookId to the method
         double overDueFine = 0.0; // Initialize overDueFine and assign it to 0.0
 
         // If currentLoan is over due then assign overDueFine to fine on over due by using the "calculateOverDueFine" method of Library class
@@ -71,7 +71,7 @@ public class ReturnBookControl {
             returnBookUI.display(String.format("\nOverdue fine : $%.2f", overDueFine)); // Display over due fine
         }
 
-        returnBookUI.setState(ReturnBookUI.UI_STATE.INSPECTING);  // Set the state of returnBookUI object to "INSPECTING" by calling their method "setState" and passing the static enum of ReturnBookUI
+        returnBookUI.setState(ReturnBookUI.UIState.INSPECTING);  // Set the state of returnBookUI object to "INSPECTING" by calling their method "setState" and passing the static enum of ReturnBookUI
         controlState = ControlState.INSPECTING;  // Set the state of controlState to "INSPECTING" state
     }
 
@@ -81,7 +81,7 @@ public class ReturnBookControl {
         if (!controlState.equals(ControlState.READY)) { // If controlState is not in the state of "READY" then follows the code in IF block
             throw new RuntimeException("ReturnBookControl: cannot call scanningComplete except in READY state"); // Throw an exception error of following text
         }
-        returnBookUI.setState(ReturnBookUI.UI_STATE.COMPLETED); // Set the state of controlState to "COMPLETED" state
+        returnBookUI.setState(ReturnBookUI.UIState.COMPLETED); // Set the state of controlState to "COMPLETED" state
     }
 
     // Create dischargeLoan method which discharge the loan according to the "isDamaged" boolean which is passing to this method.
@@ -94,9 +94,8 @@ public class ReturnBookControl {
 
         library.dischargeLoan(currentLoan, isDamaged); // Discharge loan by using method "dischargeLoan" of Library class and pass currentLoan as a Loan object and isDamaged boolean
         currentLoan = null; // Assign currentLoan to null
-        returnBookUI.setState(ReturnBookUI.UI_STATE.READY); // Set the state of returnBookUI object to "READY" by calling their method "setState" and passing the static enum of ReturnBookUI
+        returnBookUI.setState(ReturnBookUI.UIState.READY); // Set the state of returnBookUI object to "READY" by calling their method "setState" and passing the static enum of ReturnBookUI
         controlState = ControlState.READY; // Set the state of controlState to "READY" state
     }
 }
 // Finalize "ReturnBookControl.java" file
-
