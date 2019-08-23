@@ -18,12 +18,12 @@ public class FixBookUI {
     }
 
     public void isRun(){//change method name as isRun
-		getOutput("Fix Book Use Case UI\n");// change according to method name setOutput
+		setOutput("Fix Book Use Case UI\n");// change according to method name setOutput
 		
 		while (true) {	
 			switch (state) {// change according to variable name state
 				case READY:
-					String bookString = getInput("Scan Book (<enter> completes): ");// change according to method name getInput, variable name bookString
+					String bookString = setInput("Scan Book (<enter> completes): ");// change according to method name setInput, variable name bookString
 					if (bookString.length() == 0) {// change according to variable name bookString
 						control.scanningComplete();// change according to variable name control, and method name scanningComplete
 					} else {
@@ -31,12 +31,12 @@ public class FixBookUI {
 							int bookId= Integer.valueOf(bookString).intValue();// change according to variable name bookString, bookId
 							control.bookScanned(bookId);// change according to variable name control,bookId and method name bookScanned
 						} catch (NumberFormatException e) {
-									getOutput("Invalid bookId");// change according to method name setOutput
+									setOutput("Invalid bookId");// change according to method name setOutput
 						}
 					}
 					break;		
 				case FIXING:
-					String answer = getInput("Fix Book? (Y/N) : ");// change according to method name getInput, variable name answer
+					String answer = setInput("Fix Book? (Y/N) : ");// change according to method name setInput, variable name answer
 					boolean fixAnswer = false;// change variable name as fixAnswer
 					if (answer.toUpperCase().equals("Y")) {// change according to variable name answer
 						fixAnswer = true;// change according to variable name fixAnswer
@@ -45,11 +45,11 @@ public class FixBookUI {
 					break;
 										
 				case COMPLETED:
-					getOutput("Fixing process complete");// change according to method name setOutput
+					setOutput("Fixing process complete");// change according to method name setOutput
 					return;
 					
 				default:
-					getOutput("Unhandled state");// change according to method name setOutput
+					setOutput("Unhandled state");// change according to method name setOutput
 					throw new RuntimeException("FixBookUI : unhandled state :" + state);// change according to variable name state			
 					
 			}		
@@ -57,16 +57,16 @@ public class FixBookUI {
 		
     }
 
-    private String getInput(String prompt) {//change method name as getInput
+    private String setInput(String prompt) {//change method name as setInput
 		System.out.print(prompt);
 		return input.nextLine();
     }	
 			
-    private void getOutput(Object object) {//change method name as getOutput
+    private void setOutput(Object object) {//change method name as setOutput
 		System.out.println(object);
     }
 
-    public void setDisplay(Object object) {//change method name as setDisplay
-		getOutput(object); // change according to method name setOutput
+    public void isDisplay(Object object) {//change method name as isDisplay
+		setOutput(object); // change according to method name setOutput
     } 
 }

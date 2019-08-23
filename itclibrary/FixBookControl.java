@@ -3,11 +3,11 @@ public class FixBookControl {
 	private FixBookUI ui;// change the variable name as ui
 	private enum ControlState { INITIALISED, READY, FIXING };// change enum name as ControlState
 	private ControlState state;// change the variable name as state, enum name as ControlState
-	private library library;// change the variable name as library
-	private book currentBook;// change the variable name as currentBook
+	private Library library;// change the variable name as library
+	private Book currentBook;// change the variable name as currentBook
 
 	public FixBookControl() {
-		this.library = library.setInstance();// change according to variable name library and method name setInstance
+		this.library = library.getInstance();// change according to variable name library and method name isInstance
 		state = ControlState.INITIALISED;// change according to variable name state ,enum name as ControlState
 	}
 	
@@ -25,17 +25,17 @@ public class FixBookControl {
 		if (!state.equals(ControlState.READY)) {// change according to variable name state ,enum name as ControlState
 			throw new RuntimeException("FixBookControl: cannot call bookScanned except in READY state");
 		}	
-		currentBook = library.Book(bookId);// change according to variable name library, currentBook
+		currentBook = library.getBook(bookId);// change according to variable name library, currentBook
 		
 		if (currentBook == null) {// change according to variable name currentBook
-			ui.setDisplay("Invalid bookId");// change according to variable name ui and method name setDisplay
+			ui.isDisplay("Invalid bookId");// change according to variable name ui and method name isDisplay
 			return;
 		}
 		if (!currentBook.isDamaged()) {// change according to variable name currentBook, method nameisDamaged
-			ui.setDisplay("Book has not been damaged");// change according to variable name ui and method name setDisplay
+			ui.isDisplay("Book has not been damaged");// change according to variable name ui and method name isDisplay
 			return;
 		}
-		ui.setDisplay(currentBook.toString());// change according to variable name ui, currentBook and method name setDisplay
+		ui.isDisplay(currentBook.toString());// change according to variable name ui, currentBook and method name isDisplay
 		ui.setState(FixBookUI.UiState.FIXING);// change according to variable name ui and method name setState, enum name as Uistate
 		state = ControlState.FIXING;// change according to variable name state	,enum name as ControlState	
 	}
