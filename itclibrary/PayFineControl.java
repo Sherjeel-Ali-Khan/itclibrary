@@ -1,63 +1,63 @@
 public class PayFineControl {
 	
-	private PayFineUI Ui;
-	private enum CONTROL_STATE { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
-	private CONTROL_STATE StAtE;
+	private PayFineUI ui;// change the variable name as ui
+	private enum ControlState { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };// Change enum name as ControlState
+	private ControlState state;// change the variable name as state ,enum name as ControlState
 	
-	private library LiBrArY;
-	private member MeMbEr;
+	private Library library;// change the variable name as library
+	private Member member;// change the variable name as member
 
 
 	public PayFineControl() {
-		this.LiBrArY = LiBrArY.INSTANCE();
-		StAtE = CONTROL_STATE.INITIALISED;
+		this.library = library.getInstance();// change according to variable name library and method name isInstance
+		state = ControlState.INITIALISED;// change according to variable name state ,enum name as ControlState
 	}
 	
-	
-	public void Set_UI(PayFineUI ui) {
-		if (!StAtE.equals(CONTROL_STATE.INITIALISED)) {
+	// change method neme as setUi
+	public void setUi(PayFineUI ui1) {//change parameter name ui to state1 for uii identify with variable name
+		if (!state.equals(ControlState.INITIALISED)) {// change according to variable name state ,enum name as ControlState 
 			throw new RuntimeException("PayFineControl: cannot call setUI except in INITIALISED state");
 		}	
-		this.Ui = ui;
-		ui.Set_State(PayFineUI.UI_STATE.READY);
-		StAtE = CONTROL_STATE.READY;		
+		this.ui = ui1;// change according to parameter and variable name ui1 and uil
+		ui1.setState(PayFineUI.UiState.READY);// change according to parameter name ui1 and method name setState ,enum name as UiState
+		state = ControlState.READY;// change according to variable name state ,enum name as ControlState 		
 	}
 
 
-	public void Card_Swiped(int memberId) {
-		if (!StAtE.equals(CONTROL_STATE.READY)) {
+	public void cardSwiped(int memberId) {// change method neme as cardSwiped
+		if (!state.equals(ControlState.READY)) {// change according to variable name state ,enum name as ControlState
 			throw new RuntimeException("PayFineControl: cannot call cardSwiped except in READY state");
 		}	
-		MeMbEr = LiBrArY.MEMBER(memberId);
+		member = library.getMember(memberId);// change according to variable name library , member
 		
-		if (MeMbEr == null) {
-			Ui.DiSplAY("Invalid Member Id");
+		if (member == null) {// change according to variable name member 
+			ui.isDisplay("Invalid Member Id");// change according to variable name ui and method name isDisplay 
 			return;
 		}
-		Ui.DiSplAY(MeMbEr.toString());
-		Ui.Set_State(PayFineUI.UI_STATE.PAYING);
-		StAtE = CONTROL_STATE.PAYING;
+		ui.isDisplay(member.toString());// change according to variable name ui,member and method name isDisplay
+		ui.setState(PayFineUI.UiState.PAYING);// change according to variable name ui and method name setState,enum name as UiState
+		state = ControlState.PAYING;// change according to variable name state ,enum name as ControlState
 	}
 	
 	
-	public void CaNcEl() {
-		Ui.Set_State(PayFineUI.UI_STATE.CANCELLED);
-		StAtE = CONTROL_STATE.CANCELLED;
+	public void isCancel() {// change method neme as isCancel
+		ui.setState(PayFineUI.UiState.CANCELLED);// change according to variable name ui and method name setState ,enum name as UiState
+		state = ControlState.CANCELLED;// change according to variable name state ,enum name as ControlState
 	}
 
 
-	public double PaY_FiNe(double AmOuNt) {
-		if (!StAtE.equals(CONTROL_STATE.PAYING)) {
+	public double payFine(double amount) {// change method neme as payFine, parameter as amount
+		if (!state.equals(ControlState.PAYING)) {// change according to variable name state,enum name as ControlState 
 			throw new RuntimeException("PayFineControl: cannot call payFine except in PAYING state");
 		}	
-		double ChAnGe = MeMbEr.Pay_Fine(AmOuNt);
-		if (ChAnGe > 0) {
-			Ui.DiSplAY(String.format("Change: $%.2f", ChAnGe));
+		double change = member.payFine(amount);// change according to variable name member ,change, amount
+		if (change > 0) {//change variable name as change
+			ui.isDisplay(String.format("Change: $%.2f", change));// change according to variable name ui,change and method name isDisplay
 		}
-		Ui.DiSplAY(MeMbEr.toString());
-		Ui.Set_State(PayFineUI.UI_STATE.COMPLETED);
-		StAtE = CONTROL_STATE.COMPLETED;
-		return ChAnGe;
+		ui.isDisplay(member.toString());// change according to variable name ui , member and method name display
+		ui.setState(PayFineUI.UiState.COMPLETED);// change according to variable name ui and method name setState ,enum name as UiState
+		state = ControlState.COMPLETED;// change according to variable name state ,enum name as ControlState
+		return change;//change variable name as change
 	}
 	
 

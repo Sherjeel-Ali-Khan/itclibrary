@@ -1,99 +1,95 @@
 import java.util.Scanner;
 
-
 public class PayFineUI {
+    
+	public static enum UiState { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };// change enum name as UiState
 
-
-	public static enum UI_STATE { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
-
-	private PayFineControl CoNtRoL;
+	private PayFineControl control;// change the variable name as control
 	private Scanner input;
-	private UI_STATE StAtE;
+	private UiState state;// change the variable name as state, enum name as UiState
 
 	
-	public PayFineUI(PayFineControl control) {
-		this.CoNtRoL = control;
+	public PayFineUI(PayFineControl control1) {//change parameter name control to control1 for easyli identify with variable name
+		this.control = control1;// change according to parameter and variable name control1 and control
 		input = new Scanner(System.in);
-		StAtE = UI_STATE.INITIALISED;
-		control.Set_UI(this);
+		state = UiState.INITIALISED;// change according to variable name state , enum name as UiState
+		control1.setUi(this);// change according to parameter name control1 and method name setUi
 	}
 	
-	
-	public void Set_State(UI_STATE state) {
-		this.StAtE = state;
+	//change the mathod name as setState, enum name as UiState
+	public void setState(UiState state1) {//change parameter name state to state1 for easyli identify with variable name
+		this.state = state1;// change according to parameter and variable name state1 and state
 	}
 
 
-	public void RuN() {
-		output("Pay Fine Use Case UI\n");
+	public void isRun() {// change method name as isRun
+		setOutput("Pay Fine Use Case UI\n");// change using method name as setOutput
 		
 		while (true) {
 			
-			switch (StAtE) {
+			switch (state) {// change the variable name as state
 			
-			case READY:
-				String Mem_Str = input("Swipe member card (press <enter> to cancel): ");
-				if (Mem_Str.length() == 0) {
-					CoNtRoL.CaNcEl();
+				case READY:
+					String memberString = setInput("Swipe member card (press <enter> to cancel): ");// change using method name as setInput, variable name memberString
+					if (memberString.length() == 0) {//change variable name as memberString
+						control.isCancel();// change according to variable name control and method name isCancel
+						break;
+					}
+					try {
+						int memberId = Integer.valueOf(memberString).intValue();//change variable name as memberString, memberId
+						control.cardSwiped(memberId);// change according to variable name control, memberId and method name cardSwiped
+					} catch (NumberFormatException e) {
+						setOutput("Invalid memberId");// change using method name as setOutput
+					}
 					break;
-				}
-				try {
-					int Member_ID = Integer.valueOf(Mem_Str).intValue();
-					CoNtRoL.Card_Swiped(Member_ID);
-				}
-				catch (NumberFormatException e) {
-					output("Invalid memberId");
-				}
-				break;
+					
+				case PAYING:
+					double amount = 0;// change variable name as amount
+					String amountString = setInput("Enter amount (<Enter> cancels) : ");// change using method name as setInput, variable name as amountString
+					if (amountString.length() == 0) {// change variable name as amountString
+						control.isCancel();// change according to variable name control and method name isCancel
+						break;
+					}
+					try {
+						amount = Double.valueOf(amountString).doubleValue();// change variable name as amount,amountString
+					} catch (NumberFormatException e) {}
+					if (amount <= 0) {// change variable name as amount
+						setOutput("Amount must be positive");// change using method name as setOutput
+						break;
+					}
+					control.payFine(amount);// change according to variable name control, amount and method name payFine
+					break;
+									
+				case CANCELLED:
+					setOutput("Pay Fine process cancelled");// change using method name as setOutput
+					return;
 				
-			case PAYING:
-				double AmouNT = 0;
-				String Amt_Str = input("Enter amount (<Enter> cancels) : ");
-				if (Amt_Str.length() == 0) {
-					CoNtRoL.CaNcEl();
-					break;
-				}
-				try {
-					AmouNT = Double.valueOf(Amt_Str).doubleValue();
-				}
-				catch (NumberFormatException e) {}
-				if (AmouNT <= 0) {
-					output("Amount must be positive");
-					break;
-				}
-				CoNtRoL.PaY_FiNe(AmouNT);
-				break;
-								
-			case CANCELLED:
-				output("Pay Fine process cancelled");
-				return;
-			
-			case COMPLETED:
-				output("Pay Fine process complete");
-				return;
-			
-			default:
-				output("Unhandled state");
-				throw new RuntimeException("FixBookUI : unhandled state :" + StAtE);			
+				case COMPLETED:
+					setOutput("Pay Fine process complete");// change using method name as setOutput
+					return;
+				
+				default:
+					setOutput("Unhandled state");// change using method name as setOutput
+					throw new RuntimeException("FixBookUI : unhandled state :" + state);// change the variable name as state			
 			
 			}		
 		}		
 	}
 
 	
-	private String input(String prompt) {
+	private String setInput(String prompt) {// change method name as setInput
 		System.out.print(prompt);
 		return input.nextLine();
 	}	
 		
 		
-	private void output(Object object) {
+	private void setOutput(Object object) {// change method name as setOutput
 		System.out.println(object);
 	}	
 			
 
-	public void DiSplAY(Object object) {
-		output(object);
+	public void isDisplay(Object object) {// change method name as display
+		setOutput(object);// change using method name as setOutput
 	}
 
 
