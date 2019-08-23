@@ -29,7 +29,7 @@ public class BorrowBookUI { // Class name changed ( To: BorrowBookUI ; Orig: Bor
 	}
 
 
-	public void setState(uiState state) { // Change parameter name ( To: state;  Orig: STATE;) Change method name (To:setState; Orig:Set_State;)
+	public void setState(UiState state) { // Change parameter name ( To: state;  Orig: STATE;) Change method name (To:setState; Orig:Set_State;)
 		this.uiState = state; // Change local variable name ( To: this.uiState = state;  Orig: UI_STATE = STATE; )
 	}
 
@@ -54,7 +54,7 @@ public class BorrowBookUI { // Class name changed ( To: BorrowBookUI ; Orig: Bor
 				}
 				try {
 					int memberId = Integer.valueOf(MEM_STR).intValue(); // Change variable name ( To: memberId; Orig: Member_ID;)
-					browBkCntrl.Swiped(memberId); // Change variable name ( To: browBkCntrl; Orig: CONTROL;) ( To: memberId; Orig: Member_ID;)
+					browBkCntrl.swiped(memberId); // Change variable name ( To: browBkCntrl; Orig: CONTROL;) ( To: memberId; Orig: Member_ID;)
 				}
 				catch (NumberFormatException e) {
 					output("Invalid Member Id");
@@ -71,12 +71,12 @@ public class BorrowBookUI { // Class name changed ( To: BorrowBookUI ; Orig: Bor
 			case SCANNING:
 				String Book_Str = input("Scan Book (<enter> completes): ");
 				if (Book_Str.length() == 0) {
-					browBkCntrl.Complete(); // Change variable name ( To: browBkCntrl; Orig: CONTROL;)
+					browBkCntrl.complete(); // Change variable name ( To: browBkCntrl; Orig: CONTROL;)
 					break;
 				}
 				try {
 					int bid = Integer.valueOf(Book_Str).intValue(); // Change variable name ( To: bid; Orig: BiD;)
-					browBkCntrl.Scanned(bid); // Change variable name ( To: browBkCntrl; Orig: CONTROL;)
+					browBkCntrl.scanned(bid); // Change variable name ( To: browBkCntrl; Orig: CONTROL;)
 
 				} catch (NumberFormatException e) {
 					output("Invalid Book Id");
@@ -90,7 +90,7 @@ public class BorrowBookUI { // Class name changed ( To: BorrowBookUI ; Orig: Bor
 					browBkCntrl.cancel(); // Change variable name ( To: browBkCntrl; Orig: CONTROL;)
 
 				} else {
-					browBkCntrl.Commit_LOans(); // Change variable name ( To: browBkCntrl; Orig: CONTROL;)
+					browBkCntrl.commitLoans(); // Change variable name ( To: browBkCntrl; Orig: CONTROL;)
 					input("Press <any key> to complete ");
 				}
 				break;
